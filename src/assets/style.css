@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', 'Verdana', 'sans-serif';
+}
+
+/* Header */
+
+#estrutura #header-page {
+    background: purple;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+#estrutura #header-page #nav-list {
+    color: white;
+    display: flex;
+    gap: 15px;
+    font-size: 2em;
+}
+.nav-list-link {
+    color: white;
+}
