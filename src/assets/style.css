@@ -2,25 +2,58 @@
 
 * {
     list-style: none;
+    box-sizing: border-box;
     padding: 0;
     margin: 0;
     font-family: 'Roboto', 'Verdana', 'sans-serif';
+    text-decoration: none;
 }
 
 /* Header */
 
 #estrutura #header-page {
-    background: purple;
-    padding: 20px;
+    background: linear-gradient(135deg, #8844ee, #b07dfb);
+    padding: 12px 125px;
     display: flex;
     justify-content: space-between;
 }
 #estrutura #header-page #nav-list {
     color: white;
     display: flex;
-    gap: 15px;
+    gap: 10px;
     font-size: 2em;
 }
 .nav-list-link {
     color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.575em;
+    border-radius: 5px;
+    padding: 8px;
+    transition: .2s;
 }
+
+.nav-list-link:hover {
+    background-color: rgba(0, 0, 0, .4);
+}
+
+#filtro-home {
+    align-self: center;
+    display: inline-block;
+    width: 450px;
+    font-size: 1em;
+    padding: 5px 15px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    background-image: url('../assets/lupa.png');
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+#filtro-home:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
+
