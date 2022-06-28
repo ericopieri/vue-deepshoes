@@ -23,11 +23,34 @@
               ><i class="fa-solid fa-user"></i
               ><span class="nav-item-span">Logar</span></a
             >
+            <ul id="dropdown-profile-list">
+              <li class="dropdown-list-item">
+                <a href="" class="dropdown-list-link">Teste teste</a>
+              </li>
+              <li class="dropdown-list-item">
+                <a href="" class="dropdown-list-link">Teste</a>
+              </li>
+              <li class="dropdown-list-item">
+                <a href="" class="dropdown-list-link">Teste</a>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>
     </header>
-    <BarraCategorias />
+    <nav id="barra-categorias" :class="{ opened: barraOpened }">
+      <ul id="barra-categorias-list">
+        <li class="barra-categorias-item">
+          <a href="" class="barra-categorias-link">Masculino</a>
+        </li>
+        <li class="barra-categorias-item">
+          <a href="" class="barra-categorias-link">Feminino</a>
+        </li>
+        <li class="barra-categorias-item">
+          <a href="" class="barra-categorias-link">Todos</a>
+        </li>
+      </ul>
+    </nav>
     <main id="main-container">
       <div id="estrutura-home">
         <div id="flex-tenis">
@@ -40,10 +63,12 @@
 </template>
 
 <script>
-import BarraCategorias from "../components/BarraCategorias";
-
 export default {
-  components: { BarraCategorias },
+  data() {
+    return {
+      barraOpened: true,
+    };
+  },
 };
 </script>
 
