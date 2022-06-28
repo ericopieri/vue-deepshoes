@@ -47,7 +47,7 @@
   width: 500px;
 }
 
-#form-filtro input {
+#form-filtro #filtro-home {
   position: absolute;
   top: 50%;
   width: 100%;
@@ -55,7 +55,6 @@
   font-size: 1.1em;
   padding: 8px 10px;
   border-radius: 9px;
-  box-shadow: 0 0 0 0;
   box-shadow: 0 0 0 0;
   border: 0 none;
   outline: 0;
@@ -71,7 +70,6 @@
 textarea:focus,
 input:focus,
 select:focus {
-  box-shadow: 0 0 0 0;
   border: 0 none;
   outline: 0;
 }
@@ -108,6 +106,9 @@ select:focus {
 }
 
 #dropdown-profile-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   position: absolute;
@@ -117,23 +118,61 @@ select:focus {
   background: white;
   width: 175px;
   border-radius: 8px;
-  padding: 5px 15px;
+  padding: 15px;
 }
 
-#dropdown-profile-list::after {
-  content: "";
+.nav-item-menu:hover .dropdown-list {
+  transform: translateX(-50%);
+  opacity: 1;
+}
+
+.dropdown-list {
+  border-radius: 8px;
+  z-index: 5;
+  display: flex;
   left: 50%;
   transform: translateX(-50%);
-  top: -15px;
-  border-bottom-color: white;
+  position: absolute;
+  flex-direction: column;
+  top: calc(100% + 10px);
+  width: 200px;
+  padding: 15px;
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  transform: translateX(-50%) rotateX(-90deg);
+  transform-origin: top center;
+  transition: all .15s ease-in;
+  opacity: 0.25;
 }
 
-.dropdown-list-link {
-  color: black;
-  font-size: 0.575em;
+.dropdown-list::after {
+  content: '';
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
 }
-.dropdown-list-item {
-  margin-top: 5px;
+
+.dropdown-list .dropdown-list-item {
+  border-radius: 8px;
+  padding: 5px 0;
+  font-size: 0.575em;
+  transition: .2s;
+}
+
+.dropdown-list .dropdown-list-item:hover {
+  background: rgba(0, 0, 0, 0.034);
+}
+
+.dropdown-list .dropdown-list-item .dropdown-link {
+  padding: 0 10px;
+  display: inline-block;
+  width: 100%;
+  color: black;
 }
 
 /* Barra de Categorias */

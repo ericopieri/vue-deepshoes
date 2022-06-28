@@ -13,7 +13,7 @@
       <nav id="nav-menu">
         <ul id="nav-list">
           <li class="nav-item-menu">
-            <a href="" class="nav-list-link"
+            <a href="" class="nav-list-link" @click.stop.prevent="barraOpened = !barraOpened"
               ><i class="fa-solid fa-cart-shopping"></i
               ><span class="nav-item-span">Carrinho</span></a
             >
@@ -23,16 +23,10 @@
               ><i class="fa-solid fa-user"></i
               ><span class="nav-item-span">Logar</span></a
             >
-            <ul id="dropdown-profile-list">
-              <li class="dropdown-list-item">
-                <a href="" class="dropdown-list-link">Teste teste</a>
-              </li>
-              <li class="dropdown-list-item">
-                <a href="" class="dropdown-list-link">Teste</a>
-              </li>
-              <li class="dropdown-list-item">
-                <a href="" class="dropdown-list-link">Teste</a>
-              </li>
+            <ul class="dropdown-list">
+              <li class="dropdown-list-item"><a href="" class="dropdown-link">Meus dados</a></li>
+              <li class="dropdown-list-item"><a href="" class="dropdown-link">Meu perfil</a></li>
+              <li class="dropdown-list-item"><a href="" class="dropdown-link">Sair</a></li>
             </ul>
           </li>
         </ul>
@@ -51,14 +45,6 @@
         </li>
       </ul>
     </nav>
-    <main id="main-container">
-      <div id="estrutura-home">
-        <div id="flex-tenis">
-          <div class="flex-tenis-item">verme</div>
-          <div class="flex-tenis-item">verme</div>
-        </div>
-      </div>
-    </main>
   </div>
 </template>
 
