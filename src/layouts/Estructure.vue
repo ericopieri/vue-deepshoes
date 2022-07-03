@@ -53,10 +53,13 @@
       </header>
       <carousel perPage=1 paginationActiveColor="#8844ee">
         <slide>
-          <img src="@/assets/banner1.jpg" alt="">
+          <img src="@/assets/bannergif.gif" alt="">
         </slide>
         <slide>
           <img src="@/assets/banner2.jpg" alt="">
+        </slide>
+        <slide>
+          <img src="@/assets/banner1.jpg" alt="">
         </slide>
       </carousel>
     <main id="main">

@@ -15,7 +15,8 @@
   z-index: 1;
   position: relative;
   width: 100%;
-  background: linear-gradient(135deg, #8844ee, #b07dfb);
+  /* background: linear-gradient(135deg, #8844ee, #b07dfb); */
+  background: #8529AD;
   padding: 12px 125px;
   display: flex;
   justify-content: space-between;
