@@ -281,3 +281,70 @@ select:focus {
 .infos-produto .titulo-produto {
   font-size: 1.450em;
 }
+
+/* Login */
+
+#logo {
+  width: 250px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+.estrutura-login {
+  position: relative;
+  background: #8529AD;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.container-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: tomato;
+  left: 275px;
+  border-radius: 7px;
+  height: 600px;
+  width: 500px;
+  padding: 30px;
+  background: #fff;
+}
+#login-titulos {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+#login-titulos h1 {
+  color: #8529AD;
+  font-size: 2em;
+}
+
+#login-titulos span {
+  color: grey;
+  font-size: 1em;
+}
+
+#form-login {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#form-login .login-input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#form-login .login-input label {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #8529AD;
+}

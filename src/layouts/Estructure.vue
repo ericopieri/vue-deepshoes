@@ -14,7 +14,9 @@
         </ul>
       </nav>
       <header id="header-page">
-        <div>LOGO</div>
+        <div>
+          <img src="../assets/logos/Logoheader.png" style="width: 200px" alt="">
+        </div>
         <form action="" id="form-filtro">
           <input
             type="text"
@@ -53,13 +55,10 @@
       </header>
       <carousel perPage=1 paginationActiveColor="#8844ee">
         <slide>
-          <img src="@/assets/bannergif.gif" alt="">
+          <img src="../assets/banner/banner1.gif" alt="">
         </slide>
         <slide>
-          <img src="@/assets/banner2.jpg" alt="">
-        </slide>
-        <slide>
-          <img src="@/assets/banner1.jpg" alt="">
+          <img src="../assets/banner/banner2.gif" alt="">
         </slide>
       </carousel>
     <main id="main">
@@ -93,6 +92,10 @@ export default {
   data() {
     return {
       produtos: [
+        { src: require('../assets/tenis/tenis1.jpg'), preco: 'R$ 30,00', titulo: 'Nike Air Max', desc: 'Lorem ipsum dolor met a det a dot melet fock let ipsum dolor' },
+        { src: require('../assets/tenis/tenis1.jpg'), preco: 'R$ 30,00', titulo: 'Nike Air Max', desc: 'Lorem ipsum dolor met a det a dot melet fock let ipsum dolor' },
+        { src: require('../assets/tenis/tenis1.jpg'), preco: 'R$ 30,00', titulo: 'Nike Air Max', desc: 'Lorem ipsum dolor met a det a dot melet fock let ipsum dolor' },
+        { src: require('../assets/tenis/tenis1.jpg'), preco: 'R$ 30,00', titulo: 'Nike Air Max', desc: 'Lorem ipsum dolor met a det a dot melet fock let ipsum dolor' },
         { src: require('../assets/tenis/tenis1.jpg'), preco: 'R$ 30,00', titulo: 'Nike Air Max', desc: 'Lorem ipsum dolor met a det a dot melet fock let ipsum dolor' },
         { src: require('../assets/tenis/tenis1.jpg'), preco: 'R$ 30,00', titulo: 'Nike Air Max', desc: 'Lorem ipsum dolor met a det a dot melet fock let ipsum dolor' },
         { src: require('../assets/tenis/tenis1.jpg'), preco: 'R$ 30,00', titulo: 'Nike Air Max', desc: 'Lorem ipsum dolor met a det a dot melet fock let ipsum dolor' },
