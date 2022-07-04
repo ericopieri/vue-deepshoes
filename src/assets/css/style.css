@@ -214,15 +214,16 @@ select:focus {
 
 /* Main Container */
 
-#main {
-  padding: 15px 125px;
+.container-main-titulo-produtos {
+  width: calc(300px + 300px + 300px + 300px + 25px * 4);
+  margin: 0 auto;
 }
 
 #main .cointainer-produtos {
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 15px;
   display: flex;
-  padding: 20px;
   border-radius: 8px;
 }
 
@@ -255,8 +256,8 @@ select:focus {
 }
 
 .container-main-titulo-produtos .titulo-container-produtos {
+  margin: 15px auto;
   font-weight: 600;
-  margin: 0 0 0 0;
   font-size: 1.4em;
   color: #000000;
   text-align: center;
@@ -285,7 +286,7 @@ select:focus {
 /* Login */
 
 #logo {
-  width: 250px;
+  width: 215px;
   position: absolute;
   left: 20px;
   top: 20px;
@@ -299,21 +300,39 @@ select:focus {
   width: 100%;
 }
 
+#logo-right {
+  flex: 1;
+  position: relative;
+}
+
+#logo-right img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 600px;
+}
+
+#container-login-logo {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  left: 50%;
+  width: 1325px;
+}
+
 .container-login {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: tomato;
-  left: 275px;
   border-radius: 7px;
   height: 600px;
   width: 500px;
   padding: 30px;
   background: #fff;
 }
+
 #login-titulos {
   display: flex;
   flex-direction: column;
