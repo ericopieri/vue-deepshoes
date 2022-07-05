@@ -34,10 +34,12 @@
               >
             </li>
             <li class="nav-item-menu">
+              <router-link :to="{ path: '/login' }">
               <a href="" class="nav-list-link"
-                ><i class="fa-solid fa-user"></i
+                >
+                <i class="fa-solid fa-user"></i
                 ><span class="nav-item-span">Logar</span></a
-              >
+              ></router-link>
               <ul class="dropdown-list">
                 <li class="dropdown-list-item"><a href="" class="dropdown-link">Meus dados</a></li>
                 <li class="dropdown-list-item"><a href="" class="dropdown-link">Meu perfil</a></li>
@@ -57,7 +59,7 @@
         <slide>
           <img src="../assets/banner/banner1.gif" alt="">
         </slide>
-        <slide>
+        <slide></slide>
           <img src="../assets/banner/banner2.gif" alt="">
         </slide>
       </carousel>
@@ -82,5 +84,7 @@ export default {
   },
 };
 </script>
+
+
 
 <style></style>
