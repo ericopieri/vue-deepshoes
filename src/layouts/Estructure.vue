@@ -59,7 +59,7 @@
         <slide>
           <img src="../assets/banner/banner1.gif" alt="">
         </slide>
-        <slide></slide>
+        <slide>
           <img src="../assets/banner/banner2.gif" alt="">
         </slide>
       </carousel>
