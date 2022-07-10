@@ -6,16 +6,12 @@
     </span>
     <form action="" id="form-login">
       <div class="login-input">
-        <label for="email">
-          E-mail:
-        </label>
-        <input type="text" placeholder="Digite seu e-mail:">
+        <label for="email"> E-mail: </label>
+        <input type="text" placeholder="Digite seu e-mail:" />
       </div>
       <div class="login-input">
-        <label for="senha">
-          Senha:
-        </label>
-        <input type="password" placeholder="Digite sua senha:">
+        <label for="senha"> Senha: </label>
+        <input type="password" placeholder="Digite sua senha:" />
       </div>
       <button id="button-logar" @click.stop.prevent="login">Entrar</button>
     </form>
@@ -28,13 +24,12 @@ export default {
   methods: {
     login() {
       setTimeout(() => {
-        this.$router.push({ path: '/' })
-      }, 500)
-    }
-  }
-}
+        this.$router.push({ path: "/" });
+      }, 500);
+    },
+  },
+};
 </script>
 
 <style>
-
 </style>
