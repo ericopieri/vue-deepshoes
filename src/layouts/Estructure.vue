@@ -28,6 +28,18 @@
       <nav id="nav-menu">
         <ul id="nav-list">
           <li class="nav-item-menu">
+            <a
+              href=""
+              class="nav-list-link"
+              @click.stop.prevent="barraClosed = !barraClosed"
+              ><i
+                class="fa-solid fa-angle-down"
+                :class="{ 'icon-barra-closed': !barraClosed }"
+              ></i
+              ><span class="nav-item-span">Categorias</span></a
+            >
+          </li>
+          <li class="nav-item-menu">
             <a href="" class="nav-list-link"
               ><i class="fa-solid fa-cart-shopping"></i
               ><span class="nav-item-span">Carrinho</span></a
@@ -51,18 +63,6 @@
                 <a href="" class="dropdown-link">Sair</a>
               </li>
             </ul>
-          </li>
-          <li class="nav-item-menu">
-            <a
-              href=""
-              class="nav-list-link"
-              @click.stop.prevent="barraClosed = !barraClosed"
-              ><i
-                class="fa-solid fa-angle-down"
-                :class="{ 'icon-barra-closed': !barraClosed }"
-              ></i
-              ><span class="nav-item-span">Categorias</span></a
-            >
           </li>
         </ul>
       </nav>

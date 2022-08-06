@@ -5,6 +5,8 @@ import store from "./store";
 import './assets/css/style.css'
 import VueCarousel from 'vue-carousel';
 
+import './axios/index.js'
+
 Vue.use(VueCarousel);
 
 Vue.config.productionTip = false;

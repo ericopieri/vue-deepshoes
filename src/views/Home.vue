@@ -16,12 +16,11 @@
         class="container-produto"
       >
         <div class="imagem-produto">
-          <img :src="produto.src" class="imagem-produto-img" alt="" />
+          <img :src="produto.image" class="imagem-produto-img" alt="" />
         </div>
         <div class="infos-produto">
-          <h2 class="titulo-produto">{{ produto.titulo }}</h2>
-          <span class="desc-produto">{{ produto.desc }}</span>
-          <span class="preco-produto">{{ produto.preco }}</span>
+          <h2 class="titulo-produto">{{ produto.title }}</h2>
+          <span class="preco-produto">R$ {{ produto.price.toFixed(2) }}</span>
         </div>
       </div>
     </section>
@@ -29,75 +28,22 @@
 </template>
 
 <script>
+import api from "../axios/index.js";
+
 import { Carousel, Slide } from "vue-carousel";
 
 export default {
   components: { Carousel, Slide },
   data() {
     return {
-      produtos: [
-        {
-          src: require("../assets/tenis/tenis1.jpg"),
-          preco: "R$ 30,00",
-          titulo: "Nike Air Max",
-          desc: "Lorem ipsum dolor met a det a dot melet fock let ipsum dolor",
-        },
-        {
-          src: require("../assets/tenis/tenis1.jpg"),
-          preco: "R$ 30,00",
-          titulo: "Nike Air Max",
-          desc: "Lorem ipsum dolor met a det a dot melet fock let ipsum dolor",
-        },
-        {
-          src: require("../assets/tenis/tenis1.jpg"),
-          preco: "R$ 30,00",
-          titulo: "Nike Air Max",
-          desc: "Lorem ipsum dolor met a det a dot melet fock let ipsum dolor",
-        },
-        {
-          src: require("../assets/tenis/tenis1.jpg"),
-          preco: "R$ 30,00",
-          titulo: "Nike Air Max",
-          desc: "Lorem ipsum dolor met a det a dot melet fock let ipsum dolor",
-        },
-        {
-          src: require("../assets/tenis/tenis1.jpg"),
-          preco: "R$ 30,00",
-          titulo: "Nike Air Max",
-          desc: "Lorem ipsum dolor met a det a dot melet fock let ipsum dolor",
-        },
-        {
-          src: require("../assets/tenis/tenis1.jpg"),
-          preco: "R$ 30,00",
-          titulo: "Nike Air Max",
-          desc: "Lorem ipsum dolor met a det a dot melet fock let ipsum dolor",
-        },
-        {
-          src: require("../assets/tenis/tenis1.jpg"),
-          preco: "R$ 30,00",
-          titulo: "Nike Air Max",
-          desc: "Lorem ipsum dolor met a det a dot melet fock let ipsum dolor",
-        },
-        {
-          src: require("../assets/tenis/tenis1.jpg"),
-          preco: "R$ 30,00",
-          titulo: "Nike Air Max",
-          desc: "Lorem ipsum dolor met a det a dot melet fock let ipsum dolor",
-        },
-        {
-          src: require("../assets/tenis/tenis1.jpg"),
-          preco: "R$ 30,00",
-          titulo: "Nike Air Max",
-          desc: "Lorem ipsum dolor met a det a dot melet fock let ipsum dolor",
-        },
-        {
-          src: require("../assets/tenis/tenis1.jpg"),
-          preco: "R$ 30,00",
-          titulo: "Nike Air Max",
-          desc: "Lorem ipsum dolor met a det a dot melet fock let ipsum dolor",
-        },
-      ],
+      produtos: [],
     };
+  },
+  mounted() {
+    api.get("/products").then((resp) => {
+      this.produtos = resp.data;
+      console.log(resp.data);
+    });
   },
 };
 </script>
