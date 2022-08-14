@@ -15,7 +15,12 @@
     </nav>
     <header id="header-page">
       <div>
-        <img src="../assets/logos/Logoheader.png" style="width: 200px" alt="" />
+        <img
+          src="../assets/logos/Logoheader.png"
+          style="width: 200px; cursor: pointer"
+          alt="Logo"
+          @click.stop.prevent="$router.push({ name: 'Home' })"
+        />
       </div>
       <form action="" id="form-filtro">
         <input
@@ -40,7 +45,10 @@
             >
           </li>
           <li class="nav-item-menu">
-            <a href="" class="nav-list-link"
+            <a
+              href=""
+              class="nav-list-link"
+              @click.stop.prevent="$router.push({ name: 'Carrinho' })"
               ><i class="fa-solid fa-cart-shopping"></i
               ><span class="nav-item-span">Carrinho</span></a
             >

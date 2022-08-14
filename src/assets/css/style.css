@@ -17,6 +17,8 @@
   min-height: 100vh;
 }
 
+
+
 #estrutura #header-page {
   z-index: 1;
   position: relative;
@@ -243,15 +245,51 @@ select:focus {
 }
 
 #main .cointainer-produtos .container-produto {
+  transition: 0.2s;
   /* box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px; */
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  /* box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset; */
   border-radius: 3px;
+  align-items: center;
+  border: 1px solid lightgray;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
   gap: 10px;
   display: flex;
+  border-radius: 15px;
   flex-direction: column;
-  padding: 15px;
+  padding: 15px 15px calc(15px + 50px) 15px;
   background: rgb(253, 253, 253);
+  position: relative;
   max-width: 300px;
+}
+
+.button-vermais:hover {
+  color: white;
+  background: #7700aa;
+  color: #ffd408;
+  border: 1px solid #ffd408;
+}
+
+.button-vermais {
+  transition: 0.2s;
+  height: 50px;
+  line-height: 50px;
+  width: 100%;
+  position: absolute;
+  align-self: center;
+  border-radius: 0 0 15px 15px;
+  bottom: 0;
+  cursor: pointer;
+  font-weight: bold;
+  background: #8529AD;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border: none;
+  color: white;
+  border: 1px solid #8529AD;
+  font-size: 1.5em;
+}
+
+#main .cointainer-produtos .container-produto:hover {
+  transform: scale(1.01);
 }
 
 #main .cointainer-produtos .container-produto .imagem-produto {
@@ -271,9 +309,9 @@ select:focus {
 }
 
 .container-main-titulo-produtos .titulo-container-produtos {
-  margin: 15px auto;
+  margin: 25px auto;
   font-weight: 600;
-  font-size: 1.4em;
+  font-size: 1.6em;
   color: #000000;
   text-align: center;
 }
@@ -285,6 +323,7 @@ select:focus {
 }
 
 .infos-produto .preco-produto {
+  text-align: center;
   font-weight: 600;
   font-size: 1.125em;
   color: green;
@@ -295,6 +334,7 @@ select:focus {
 }
 
 .infos-produto .titulo-produto {
+  text-align: center;
   font-size: 1.450em;
 }
 

@@ -1,17 +1,17 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Cadastro from '../views/Cadastro.vue'
+import Estrutura from '../layouts/Estructure.vue'
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '',
-    component: () => import('../layouts/Estructure.vue'),
+    component: Estrutura,
     children: [
       {
+        name: 'Home',
         path: '/',
         component: Home
       },
@@ -20,8 +20,14 @@ const routes = [
         component: () => import('../views/CadastroProdutos.vue')
       },
       {
+        name: 'ProdutoDetalhado',
         path: '/produto/:id',
         component: () => import('../views/ProdutoDetalhado.vue')
+      },
+      {
+        name: 'Carrinho',
+        path: '/carrinho',
+        component: () => import('../views/Carrinho.vue')
       }
     ]
   },
@@ -30,12 +36,14 @@ const routes = [
     component: () => import('../layouts/Blank.vue'),
     children: [
       {
+        name: 'Login',
         path: '/login',
-        component: Login
+        component: () => import('../views/Login.vue')
       },
       {
+        name: 'Cadastro',
         path: '/cadastro',
-        component: Cadastro
+        component: () => import('../views/Cadastro.vue')
       }
     ]
   }
