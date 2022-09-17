@@ -7,29 +7,46 @@
     <form action="" id="form-login">
       <div class="login-input">
         <label for="email"> E-mail: </label>
-        <input type="text" placeholder="Digite seu e-mail:" />
+        <input
+          type="text"
+          placeholder="Digite seu e-mail:"
+          v-model="usuario.email"
+        />
       </div>
       <div class="login-input">
         <label for="senha"> Senha: </label>
-        <input type="password" placeholder="Digite sua senha:" />
+        <input
+          type="password"
+          placeholder="Digite sua senha:"
+          v-model="usuario.password"
+        />
       </div>
-      <button id="button-logar" @click.stop.prevent="login">Entrar</button>
+      <button id="button-logar" @click.stop.prevent="submitLogin">
+        Entrar
+      </button>
     </form>
     <span>Não tem uma conta?</span>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
+  data() {
+    return {
+      usuario: {},
+    };
+  },
   methods: {
-    login() {
-      setTimeout(() => {
-        this.$router.push({ path: "/" });
-      }, 500);
+    ...mapActions(["login"]),
+    submitLogin() {
+      this.login(this.usuario).then(() => {
+        this.$router.push({ name: "Home" });
+      });
     },
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>
