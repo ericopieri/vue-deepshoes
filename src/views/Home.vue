@@ -40,51 +40,24 @@
 <script>
 import { Carousel, Slide } from "vue-carousel";
 
+import api from "../axios/index";
+
 export default {
   components: { Carousel, Slide },
   data() {
     return {
-      produtos: [
-        {
-          titulo: "Tênis Olympikus",
-          img: require("../assets/tenis/tenis1.jpg"),
-          preco: 255,
-        },
-        {
-          titulo: "Tênis Nike",
-          img: require("../assets/tenis/tenis6.jpg"),
-          preco: 580,
-        },
-        {
-          titulo: "Tênis Adidas",
-          img: require("../assets/tenis/tenis2.jpg"),
-          preco: 350,
-        },
-        {
-          titulo: "Tênis Qix",
-          img: require("../assets/tenis/tenis3.jpg"),
-          preco: 390,
-        },
-        {
-          titulo: "Tênis Adidas",
-          img: require("../assets/tenis/tenis4.jpg"),
-          preco: 240,
-        },
-        {
-          titulo: "Tênis Vans",
-          img: require("../assets/tenis/tenis5.jpg"),
-          preco: 320,
-        },
-        {
-          titulo: "Tênis Nike",
-          img: require("../assets/tenis/tenis7.jpg"),
-          preco: 510,
-        },
-      ],
+      produtos: [],
     };
+  },
+  mounted() {
+    this.getProdutos();
+  },
+  methods: {
+    async getProdutos() {
+      const { data } = await api.get("/api/produtos/");
+    },
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>
