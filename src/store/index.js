@@ -11,20 +11,24 @@ export default new Vuex.Store({
     isLogged: false,
   },
   mutations: {
-    setLogin(state, payload) {
+    SET_LOGIN_INFO(state, payload) {
       state.user = payload;
       state.isLogged = true;
     },
-    logoutClean(state) {
+    LOGOUT_CLEAN(state) {
       state.user = {};
       state.isLogged = false;
     }
   },
   actions: {
-    async login({ commit }, credentials) {
-      const { data } = await api.post("/token/", credentials);
-      api.defaults.headers.common['Authorization'] = `Bearer ${data.access}`
-      commit("setLogin", data);
+    async LOGIN({ commit }, credentials) {
+      try {
+        const { data: userInfo } = await api.post("/token/", credentials);
+        api.defaults.headers.common['Authorization'] = `Bearer ${userInfo.access}`;
+        commit("SET_LOGIN_INFO", userInfo);
+      } catch(err) {
+        console.error(err);
+      }
     },
   },
   modules: {},

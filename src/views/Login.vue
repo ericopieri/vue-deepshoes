@@ -39,9 +39,9 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["login"]),
+    ...mapActions(["LOGIN"]),
     submitLogin() {
-      this.login(this.usuario).then(() => {
+      this.LOGIN(this.usuario).then(() => {
         this.$router.push({ name: "Home" });
       });
     },
