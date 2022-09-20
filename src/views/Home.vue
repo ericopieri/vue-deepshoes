@@ -55,6 +55,7 @@ export default {
   methods: {
     async getProdutos() {
       const { data } = await api.get("/api/produtos/");
+      console.log(data);
     },
   },
 };
