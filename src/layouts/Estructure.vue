@@ -68,7 +68,12 @@
                 <a href="" class="dropdown-link">Meu perfil</a>
               </li>
               <li class="dropdown-list-item">
-                <a href="" class="dropdown-link">Sair</a>
+                <a
+                  href=""
+                  class="dropdown-link"
+                  @click.stop.prevent="submitLogout"
+                  >Sair</a
+                >
               </li>
             </ul>
           </li>
@@ -83,15 +88,23 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
       barraClosed: true,
     };
   },
+  methods: {
+    ...mapActions(["LOGOUT"]),
+
+    submitLogout() {
+      this.LOGOUT();
+      this.$router.push({ name: "Login" });
+    },
+  },
 };
 </script>
-
-
 
 <style></style>
