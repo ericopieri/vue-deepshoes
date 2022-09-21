@@ -26,10 +26,13 @@ export default new Vuex.Store({
         const { data: userInfo } = await api.post("/token/", credentials);
         api.defaults.headers.common['Authorization'] = `Bearer ${userInfo.access}`;
         commit("SET_LOGIN_INFO", userInfo);
-      } catch(err) {
-        console.error(err);
+      } catch (err) {
+        console.error(err)
       }
     },
+    LOGOUT({ commit }) {
+      commit("LOGOUT_CLEAN");
+    }
   },
   modules: {},
 });
