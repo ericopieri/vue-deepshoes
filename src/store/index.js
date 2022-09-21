@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersist from "vuex-persist";
 
-import { api } from "../axios/index";
+import { api, tokenChange } from "../axios/index";
 
 Vue.use(Vuex);
 
@@ -34,12 +34,10 @@ export default new Vuex.Store({
     async LOGIN({ commit }, credentials) {
       try {
         const { data: userInfo } = await api.post("/token/", credentials);
-        api.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${userInfo.access}`;
+        tokenChange(userInfo.access);
         commit("SET_LOGIN_INFO", userInfo);
       } catch (err) {
-        const { detail: msgErro } = err.response?.data;
+        const { detail: msgErro } = err?.response?.data;
         return msgErro;
       }
     },
