@@ -25,7 +25,7 @@
         Entrar
       </button>
     </form>
-    <span>Não tem uma conta?</span>
+    <span>{{ menssagemErro }}</span>
   </div>
 </template>
 
@@ -36,14 +36,19 @@ export default {
   data() {
     return {
       usuario: {},
+      menssagemErro: "",
     };
   },
   methods: {
     ...mapActions(["LOGIN"]),
-    submitLogin() {
-      this.LOGIN(this.usuario).then(() => {
-        this.$router.push({ name: "Home" });
-      });
+
+    async submitLogin() {
+      this.menssagemErro = "";
+
+      const erro = await this.LOGIN(this.usuario);
+
+      if (!erro) this.$router.push({ name: "Home" });
+      else this.menssagemErro = erro;
     },
   },
 };

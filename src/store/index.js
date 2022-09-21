@@ -27,7 +27,8 @@ export default new Vuex.Store({
         api.defaults.headers.common['Authorization'] = `Bearer ${userInfo.access}`;
         commit("SET_LOGIN_INFO", userInfo);
       } catch (err) {
-        console.error(err)
+        const { detail: msgErro } = err.response?.data;
+        return msgErro;
       }
     },
     LOGOUT({ commit }) {
