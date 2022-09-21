@@ -2,5 +2,15 @@
   <router-view></router-view>
 </template>
 
-<style>
-</style>
+<script>
+import { tokenChange } from "./axios/index";
+
+export default {
+  beforeCreate() {
+    tokenChange();
+  },
+};
+</script>
+
+
+<style></style>
