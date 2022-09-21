@@ -40,7 +40,7 @@
 <script>
 import { Carousel, Slide } from "vue-carousel";
 
-import api from "../axios/index";
+import { api } from "../axios/index";
 
 export default {
   components: { Carousel, Slide },
