@@ -7,10 +7,8 @@ const api = axios.create({
 
 const tokenChange = (token = store.state.usuario.access) => {
   if (token) {
-    api.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${token}`;
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }
 };
 
-export { api, tokenChange }; 
+export { api, tokenChange };
