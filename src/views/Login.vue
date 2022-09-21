@@ -25,7 +25,9 @@
         Entrar
       </button>
     </form>
-    <span>{{ menssagemErro }}</span>
+    <span @click.stop.prevent="toRegister" style="cursor: pointer"
+      >Não tem uma conta?</span
+    >
   </div>
 </template>
 
@@ -39,8 +41,11 @@ export default {
       menssagemErro: "",
     };
   },
+  created() {
+    this.LOGOUT();
+  },
   methods: {
-    ...mapActions(["LOGIN"]),
+    ...mapActions(["LOGIN", "LOGOUT"]),
 
     async submitLogin() {
       this.menssagemErro = "";
@@ -49,6 +54,9 @@ export default {
 
       if (!erro) this.$router.push({ name: "Home" });
       else this.menssagemErro = erro;
+    },
+    toRegister() {
+      this.$router.push({ name: "Cadastro" });
     },
   },
 };
