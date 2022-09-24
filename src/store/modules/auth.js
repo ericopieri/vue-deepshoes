@@ -1,4 +1,4 @@
-import { api, tokenChange } from "@/axios/index";
+import { api, tokenChange, cleanToken } from "@/axios/index";
 
 export default {
     state: {
@@ -28,6 +28,7 @@ export default {
         },
         LOGOUT({ commit }) {
             commit("LOGOUT_CLEAN");
+            cleanToken();
         },
     },
     namespaced: true

@@ -11,4 +11,8 @@ const tokenChange = (token = store.state.auth.usuario.access) => {
   }
 };
 
-export { api, tokenChange };
+const cleanToken = () => {
+  api.defaults.headers.common["Authorization"] = "";
+}
+
+export { api, tokenChange, cleanToken };
