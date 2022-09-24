@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersist from "vuex-persist";
 
-import { api, tokenChange } from "../axios/index";
+import auth from "./modules/auth";
 
 Vue.use(Vuex);
 
@@ -16,35 +16,11 @@ const vuexLocalStorage = new VuexPersist({
 });
 
 export default new Vuex.Store({
-  state: {
-    usuario: {},
-    isLogged: false,
+  state: {},
+  mutations: {},
+  actions: {},
+  modules: {
+    auth
   },
-  mutations: {
-    SET_LOGIN_INFO(state, payload) {
-      state.usuario = payload;
-      state.isLogged = true;
-    },
-    LOGOUT_CLEAN(state) {
-      state.usuario = {};
-      state.isLogged = false;
-    },
-  },
-  actions: {
-    async LOGIN({ commit }, credentials) {
-      try {
-        const { data: userInfo } = await api.post("/token/", credentials);
-        tokenChange(userInfo.access);
-        commit("SET_LOGIN_INFO", userInfo);
-      } catch (err) {
-        const { detail: msgErro } = err?.response?.data;
-        return msgErro;
-      }
-    },
-    LOGOUT({ commit }) {
-      commit("LOGOUT_CLEAN");
-    },
-  },
-  modules: {},
   plugins: [vuexLocalStorage.plugin],
 });

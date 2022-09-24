@@ -42,7 +42,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["LOGOUT", "LOGIN"]),
+    ...mapActions("auth", ["LOGOUT", "LOGIN"]),
 
     async submitRegister() {
       this.LOGOUT();

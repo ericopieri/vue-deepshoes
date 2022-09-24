@@ -97,7 +97,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["LOGOUT"]),
+    ...mapActions("auth", ["LOGOUT"]),
 
     submitLogout() {
       this.LOGOUT();

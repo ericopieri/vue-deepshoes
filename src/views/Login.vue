@@ -41,11 +41,11 @@ export default {
       menssagemErro: "",
     };
   },
-  created() {
+  mounted() {
     this.LOGOUT();
   },
   methods: {
-    ...mapActions(["LOGIN", "LOGOUT"]),
+    ...mapActions("auth", ["LOGIN", "LOGOUT"]),
 
     async submitLogin() {
       this.menssagemErro = "";

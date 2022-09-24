@@ -5,7 +5,7 @@ const api = axios.create({
   baseURL: "http://localhost:8000/",
 });
 
-const tokenChange = (token = store.state.usuario.access) => {
+const tokenChange = (token = store.state.auth.usuario.access) => {
   if (token) {
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }
