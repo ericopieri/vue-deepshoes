@@ -13,18 +13,16 @@
     </h1>
     <section class="cointainer-produtos">
       <div
-        v-for="(produto, index) in produtos"
+        v-for="(produto, index) of produtos"
         :key="index"
         class="container-produto"
       >
         <div class="imagem-produto">
-          <img :src="produto.img" class="imagem-produto-img" alt="" />
+          <img :src="produto.imagem" class="imagem-produto-img" alt="" />
         </div>
         <div class="infos-produto">
-          <h2 class="titulo-produto">{{ produto.titulo }}</h2>
-          <span class="preco-produto"
-            >R$ {{ produto.preco.toFixed(2).replace(".", ",") }}</span
-          >
+          <h2 class="titulo-produto">{{ produto.nome }}</h2>
+          <span class="preco-produto">R$ {{ produto.valor_unitario }}</span>
         </div>
         <button
           class="button-vermais"
@@ -49,13 +47,13 @@ export default {
       produtos: [],
     };
   },
-  mounted() {
-    this.getProdutos();
+  async mounted() {
+    await this.getProdutos();
   },
   methods: {
     async getProdutos() {
       const { data } = await api.get("/api/produtos/");
-      console.log(data);
+      this.produtos = data.results;
     },
   },
 };
