@@ -13,7 +13,7 @@
     </h1>
     <section class="cointainer-produtos">
       <div
-        v-for="(produto, index) of produtos"
+        v-for="(produto, index) of produtos.results"
         :key="index"
         class="container-produto"
       >
@@ -32,6 +32,12 @@
         </button>
       </div>
     </section>
+    <div id="pagination">
+      <button v-show="produtos.previous && page != 1" @click="page -= 1">
+        Anterior
+      </button>
+      <button v-show="produtos.next" @click="page += 1">Próximo</button>
+    </div>
   </div>
 </template>
 
@@ -44,16 +50,22 @@ export default {
   components: { Carousel, Slide },
   data() {
     return {
-      produtos: [],
+      produtos: {},
+      page: 1,
     };
   },
   async mounted() {
     await this.getProdutos();
   },
   methods: {
-    async getProdutos() {
-      const { data } = await api.get("/api/produtos/");
-      this.produtos = data.results;
+    async getProdutos(page = 1) {
+      const { data } = await api.get("/api/produtos/?page=" + page);
+      this.produtos = data;
+    },
+  },
+  watch: {
+    page(novaPagina) {
+      this.getProdutos(novaPagina);
     },
   },
 };
