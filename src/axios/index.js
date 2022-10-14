@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "../store/index";
 
 const api = axios.create({
-  baseURL: "http://localhost:8000/",
+  baseURL: "https://web-production-7e1a.up.railway.app/",
 });
 
 const tokenChange = (token = store.state.auth.usuario.access) => {
@@ -13,6 +13,6 @@ const tokenChange = (token = store.state.auth.usuario.access) => {
 
 const cleanToken = () => {
   api.defaults.headers.common["Authorization"] = "";
-}
+};
 
 export { api, tokenChange, cleanToken };

@@ -20,7 +20,7 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    auth
+    auth,
   },
   plugins: [vuexLocalStorage.plugin],
 });

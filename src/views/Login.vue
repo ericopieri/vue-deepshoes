@@ -21,6 +21,7 @@
           v-model="usuario.password"
         />
       </div>
+      <span id="errorMessage"></span>
       <button id="button-logar" @click.stop.prevent="submitLogin">
         Entrar
       </button>
