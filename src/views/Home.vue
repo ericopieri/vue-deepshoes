@@ -26,7 +26,7 @@
         </div>
         <button
           class="button-vermais"
-          @click="$router.push({ path: '/produto/2' })"
+          @click="$router.push({ path: '/produto/' + produto.id })"
         >
           Ver <i class="fa-solid fa-plus"></i>
         </button>

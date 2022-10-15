@@ -2,26 +2,14 @@
   <div id="product-detail-estrutura">
     <section id="products-details-estrutura">
       <div class="product-image">
-        <img src="../assets/tenis/tenis6.jpg" alt="tenis1.jpg" />
+        <img :src="produto.imagem" alt="tenis1.jpg" />
       </div>
       <div class="products-details">
-        <h2 class="product-title">Tênis Nike</h2>
-        <span class="product-price">R$ 580,00</span>
-        <span class="product-description"
-          >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi
-          deleniti dolorem itaque sunt, iure amet voluptate libero, quo ipsam
-          beatae impedit accusamus a, assumenda quod architecto tempore soluta
-          laborum tempora! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Asperiores quasi voluptatum ducimus culpa itaque unde qui,
-          cupiditate porro sit perferendis, fugit hic, magnam repellendus dolor
-          quia sunt illo fugiat et?</span
-        >
+        <h2 class="product-title">{{ produto.nome }}</h2>
+        <span class="product-price">R$ {{ produto.valor_unitario }}</span>
+        <span class="product-description">{{ produto.descricao }}</span>
         <ul id="product-medidas">
-          <li class="medida-item">36</li>
-          <li class="medida-item">37</li>
-          <li class="medida-item">38</li>
-          <li class="medida-item">39</li>
-          <li class="medida-item">40</li>
+          <li class="medida-item">{{ produto.tamanho }}</li>
         </ul>
         <button class="button-comprar">Comprar</button>
       </div>
@@ -115,10 +103,13 @@
 <script>
 import { Carousel, Slide } from "vue-carousel";
 
+import { api } from "../axios/index";
+
 export default {
   components: { Carousel, Slide },
   data() {
     return {
+      produto: {},
       produtosRelacionados: [
         {
           titulo: "Tênis Olympikus",
@@ -168,6 +159,22 @@ export default {
         },
       ],
     };
+  },
+  async created() {
+    await this.getProduto();
+  },
+  methods: {
+    async getProduto() {
+      const id = this.$route.params.id;
+
+      try {
+        const { data } = await api.get(`/api/produtos/${id}`);
+        this.produto = data;
+      } catch (err) {
+        console.error(err);
+      }
+      console.log(this.produto);
+    },
   },
 };
 </script>
