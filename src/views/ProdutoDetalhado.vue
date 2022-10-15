@@ -173,7 +173,6 @@ export default {
       } catch (err) {
         console.error(err);
       }
-      console.log(this.produto);
     },
   },
 };
