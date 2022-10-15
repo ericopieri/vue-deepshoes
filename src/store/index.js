@@ -16,8 +16,14 @@ const vuexLocalStorage = new VuexPersist({
 });
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    generoHome: "Todos",
+  },
+  mutations: {
+    SET_GENERO_HOME(state, payload) {
+      state.generoHome = payload;
+    },
+  },
   actions: {},
   modules: {
     auth,

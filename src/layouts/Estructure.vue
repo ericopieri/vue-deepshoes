@@ -3,13 +3,28 @@
     <nav id="barra-categorias" :class="{ closed: barraClosed }">
       <ul id="barra-categorias-list">
         <li class="barra-categorias-item">
-          <a href="" class="barra-categorias-link">Masculino</a>
+          <a
+            href="#"
+            class="barra-categorias-link"
+            @click="SET_GENERO_HOME('Masculino')"
+            >Masculino</a
+          >
         </li>
         <li class="barra-categorias-item">
-          <a href="" class="barra-categorias-link">Feminino</a>
+          <a
+            href="#"
+            class="barra-categorias-link"
+            @click="SET_GENERO_HOME('Feminino')"
+            >Feminino</a
+          >
         </li>
         <li class="barra-categorias-item">
-          <a href="" class="barra-categorias-link">Todos</a>
+          <a
+            href="#"
+            class="barra-categorias-link"
+            @click="SET_GENERO_HOME('Todos')"
+            >Todos</a
+          >
         </li>
       </ul>
     </nav>
@@ -88,7 +103,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 
 export default {
   data() {
@@ -96,12 +111,21 @@ export default {
       barraClosed: true,
     };
   },
+  computed: {
+    ...mapState(["generoHome"]),
+  },
   methods: {
     ...mapActions("auth", ["LOGOUT"]),
+    ...mapMutations(["SET_GENERO_HOME"]),
 
     submitLogout() {
       this.LOGOUT();
       this.$router.push({ name: "Login" });
+    },
+  },
+  watch: {
+    generoHome() {
+      this.barraClosed = true;
     },
   },
 };
