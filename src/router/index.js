@@ -54,8 +54,8 @@ const routes = [
             path: "enderecos",
             component: () => import("../views/Enderecos.vue"),
           },
-        ]
-      }
+        ],
+      },
     ],
   },
   {
