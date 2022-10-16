@@ -34,6 +34,28 @@ const routes = [
         path: "/carrinho",
         component: () => import("../views/Carrinho.vue"),
       },
+      {
+        name: "Perfil",
+        path: "/perfil",
+        component: () => import("../layouts/Perfil.vue"),
+        children: [
+          {
+            name: "Pedidos",
+            path: "pedidos",
+            component: () => import("../views/Pedidos.vue"),
+          },
+          {
+            name: "Dados",
+            path: "dados",
+            component: () => import("../views/Dados.vue"),
+          },
+          {
+            name: "Enderecos",
+            path: "enderecos",
+            component: () => import("../views/Enderecos.vue"),
+          },
+        ]
+      }
     ],
   },
   {

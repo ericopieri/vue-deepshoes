@@ -61,7 +61,7 @@
           </li>
           <li class="nav-item-menu">
             <a
-              href=""
+              href="#"
               class="nav-list-link"
               @click.stop.prevent="$router.push({ name: 'Carrinho' })"
               ><i class="fa-solid fa-cart-shopping"></i
@@ -70,25 +70,23 @@
           </li>
           <li class="nav-item-menu">
             <router-link :to="{ path: '/login' }">
-              <a href="" class="nav-list-link">
+              <a href="#" class="nav-list-link">
                 <i class="fa-solid fa-user"></i
                 ><span class="nav-item-span">Logar</span></a
               ></router-link
             >
             <ul class="dropdown-list">
               <li class="dropdown-list-item">
-                <a href="" class="dropdown-link">Meus dados</a>
+                <a href="#" class="dropdown-link">Meus dados</a>
               </li>
-              <li class="dropdown-list-item">
-                <a href="" class="dropdown-link">Meu perfil</a>
+              <li
+                class="dropdown-list-item"
+                @click="$router.push({ name: 'Dados' })"
+              >
+                <a href="#" class="dropdown-link">Meu perfil</a>
               </li>
-              <li class="dropdown-list-item">
-                <a
-                  href=""
-                  class="dropdown-link"
-                  @click.stop.prevent="submitLogout"
-                  >Sair</a
-                >
+              <li class="dropdown-list-item" @click.stop.prevent="submitLogout">
+                <a href="#" class="dropdown-link">Sair</a>
               </li>
             </ul>
           </li>

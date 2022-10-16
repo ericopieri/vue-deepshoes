@@ -644,3 +644,111 @@ select:focus {
 #loading img {
   width: 60px;
 }
+
+/* Perfil */
+
+#titulo-perfil {
+  margin: 25px auto;
+  font-weight: 600;
+  font-size: 1.6em;
+  color: #000000;
+  text-align: center;
+}
+
+#container-perfil {
+  margin: 0 auto;
+  width: 1300px;
+  display: flex;
+  gap: 30px;
+}
+
+#container-perfil aside {
+  align-self: flex-start;
+  border-radius: 3px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
+  border: 1px solid #e0e0e0;
+  width: 400px;
+}
+
+#nav-perfil {
+  width: 100%;
+}
+
+#nav-perfil ul {
+  width: 100%;
+}
+
+#nav-perfil li {
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.2s;
+  width: 100%;
+  padding: 15px 0 15px 15px;
+  font-size: 1.2em;
+}
+
+#nav-perfil li:hover {
+  background: rgb(245, 245, 245);
+}
+
+.active {
+  border-left: 8px solid #8529AD;
+}
+
+.icon-profile {
+  color: #8529AD;
+  font-size: 1.1em;
+  margin-left: 3px;
+}
+
+#container-perfil #container-conteudo-perfil {
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
+  border: 1px solid #e0e0e0;
+  padding: 30px;
+  width: 870px;
+  align-self: flex-start;
+}
+
+/* Dados */
+
+#titulo-dados {
+  font-size: 1.2em;
+  margin-bottom: 25px;
+}
+
+.input-dados {
+  font-size: 1.1em;
+  display: block;
+  position: relative;
+  padding: 10px 10px;
+  width: 100%;
+  border-radius: 3px;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
+  border: 1px solid #e0e0e0;
+}
+
+#container-conteudo-perfil .input-dados+#container-conteudo-perfil .input-dados {
+  margin-top: 15px;
+}
+
+#nome-sobrenome {
+  display: flex;
+  gap: 20px;
+}
+
+#nome-sobrenome input {
+  display: inline-block;
+}
+
+#nome {
+  width: 325px;
+}
+
+#sobrenome {
+  width: 465px;
+}
+
+.margem-10px {
+  margin-top: 15px;
+}

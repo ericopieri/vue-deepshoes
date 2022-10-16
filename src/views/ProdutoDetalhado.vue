@@ -261,6 +261,7 @@ export default {
 .box-comentario + .box-comentario .avaliacao-comentario-div {
   margin-top: 40px;
 }
+
 .avaliacao-comentario {
   color: red;
 }
