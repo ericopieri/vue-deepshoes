@@ -752,3 +752,10 @@ select:focus {
 .margem-10px {
   margin-top: 15px;
 }
+
+/* Pedidos */
+
+#titulo-pedidos {
+  font-size: 1.2em;
+  margin-bottom: 25px;
+}
