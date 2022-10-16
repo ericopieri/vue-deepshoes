@@ -759,3 +759,39 @@ select:focus {
   font-size: 1.2em;
   margin-bottom: 25px;
 }
+
+#container-pedidos {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.box-pedido {
+  align-items: center;
+  width: 100%;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
+  border: 1px solid #e0e0e0;
+  background: #eee;
+  display: flex;
+  padding: 15px;
+  border-radius: 3px;
+}
+
+.info-pedido {
+  flex: 1;
+}
+
+.button-pedido {
+  cursor: pointer;
+  padding: 5px 40px;
+  font-size: 1.2em;
+  background: #7700aa;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  transition: 0.2s;
+}
+
+.button-pedido:hover {
+  background: #7700aad0;
+}
