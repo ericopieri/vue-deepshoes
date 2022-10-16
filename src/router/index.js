@@ -54,6 +54,11 @@ const routes = [
             path: "enderecos",
             component: () => import("../views/Enderecos.vue"),
           },
+          {
+            name: "PedidoDetalhado",
+            path: "pedidos/:id",
+            component: () => import("../views/PedidoDetalhado.vue"),
+          },
         ],
       },
     ],

@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h2 id="titulo-pedidos">Seus Pedidos já feitos:</h2>
+    <h2 class="titulo-pedidos">
+      Seus Pedidos já feitos
+      <i class="fa-solid fa-circle-check dados-pedidos-icon"></i>
+    </h2>
     <div id="container-pedidos">
       <div class="box-pedido" v-for="(pedido, index) of pedidos" :key="index">
         <div class="info-pedido">
@@ -15,7 +18,12 @@
             <b>Preço:</b> R$ {{ pedido.preco_total }}
           </div>
         </div>
-        <button class="button-pedido">+ Detalhes</button>
+        <button
+          class="button-pedido"
+          @click.stop.prevent="$router.push({ path: 'pedidos/' + pedido.id })"
+        >
+          + Detalhes
+        </button>
       </div>
     </div>
   </div>

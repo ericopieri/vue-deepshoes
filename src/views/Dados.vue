@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h2 id="titulo-dados">Seus dados pessoais:</h2>
+    <h2 id="titulo-dados">
+      Seus dados pessoais
+      <i class="fa-regular fa-id-card dados-pedidos-icon"></i>
+    </h2>
     <input
       v-model="usuario.cpf"
       type="text"
