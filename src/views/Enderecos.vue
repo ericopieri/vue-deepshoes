@@ -20,7 +20,12 @@
         <p>{{ endereco.referencia }}</p>
       </div>
     </div>
-    <button id="button-adicionar-endereco">Adicionar um novo Endereço</button>
+    <button
+      class="button-adicionar-endereco"
+      @click.stop.prevent="$router.push({ name: 'AdicionarEndereco' })"
+    >
+      Adicionar um novo Endereço
+    </button>
   </div>
 </template>
 
@@ -46,35 +51,4 @@ export default {
 };
 </script>
 
-<style>
-#button-adicionar-endereco {
-  border-radius: 3px;
-  margin-top: 25px;
-  font-size: 1.25em;
-  border: none;
-  color: white;
-  background: #8529ad;
-  padding: 8px 40px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-#button-adicionar-endereco:hover {
-  background: #7700aa;
-}
-
-#container-enderecos {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.box-endereco {
-  border-radius: 3px;
-  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
-  border: 1px solid #e0e0e0;
-  padding: 10px;
-  min-width: 255px;
-}
-</style>
+<style></style>

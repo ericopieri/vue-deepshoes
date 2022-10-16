@@ -55,6 +55,11 @@ const routes = [
             component: () => import("../views/Enderecos.vue"),
           },
           {
+            name: "AdicionarEndereco",
+            path: "enderecos/adicionar",
+            component: () => import("../views/AdicionarEndereco.vue"),
+          },
+          {
             name: "PedidoDetalhado",
             path: "pedidos/:id",
             component: () => import("../views/PedidoDetalhado.vue"),
