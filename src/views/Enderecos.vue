@@ -3,7 +3,7 @@
     <h2 class="titulo-pedidos">
       Seus Endereços <i class="fa-solid fa-location-dot dados-pedidos-icon"></i>
     </h2>
-    <div id="container-enderecos">
+    <div id="container-enderecos" v-if="enderecos.length">
       <div
         class="box-endereco"
         v-for="(endereco, index) of enderecos"
@@ -20,6 +20,9 @@
         <p>{{ endereco.referencia }}</p>
       </div>
     </div>
+    <p v-else style="color: red; font-size: 1.1em">
+      Você não tem endereços cadastrados
+    </p>
     <button
       class="button-adicionar-endereco"
       @click.stop.prevent="$router.push({ name: 'AdicionarEndereco' })"
