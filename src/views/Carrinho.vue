@@ -81,7 +81,9 @@
       <div class="carrinho-infos">
         <div class="total-carrinho">
           <span>Total:</span>
-          <span class="total-preco">R$ {{ carrinho.preco_total }}</span>
+          <span class="total-preco"
+            >R$ {{ Number(carrinho.preco_total).toFixed(2) }}</span
+          >
         </div>
         <button class="button-finalizar">FINALIZAR COMPRA</button>
       </div>
