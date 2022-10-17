@@ -1,5 +1,5 @@
 <template>
-  <section v-if="!(cart.items.length > 0)" class="carrinho-vazio">
+  <section v-if="carrinho.itens.length == 0" class="carrinho-vazio">
     <i class="fa-solid fa-cart-arrow-down carrinho-icon-vazio"></i>
     <span
       style="
@@ -28,18 +28,18 @@
       <div class="carrinho-itens">
         <div
           class="carrinho-iten"
-          v-for="(item, index) in cart.items"
+          v-for="(item, index) in carrinho.itens"
           :key="index"
         >
           <div class="img-and-details">
             <img
-              :src="item.img"
+              :src="item.imagem"
               style="width: 100px; display: inline-block"
               alt="Tênis"
             />
             <div class="iten-details">
               <h2 class="item-titulo" style="display: block">
-                {{ item.titulo }}
+                {{ item.nome }}
               </h2>
               <div class="item-tamanho" style="display: block">
                 <span>Tamanho:</span> {{ item.tamanho }}
@@ -50,7 +50,8 @@
               <div class="item-tamanho" style="display: block">
                 <span>Preço:</span>
                 <span class="preco-item">
-                  R$ {{ item.preco.toFixed(2).replace(".", ",") }}</span
+                  R$
+                  {{ item.valor_unitario }}</span
                 >
               </div>
             </div>
@@ -80,9 +81,7 @@
       <div class="carrinho-infos">
         <div class="total-carrinho">
           <span>Total:</span>
-          <span class="total-preco"
-            >R$ {{ cart.totalPrice.toFixed(2).replace(".", ",") }}</span
-          >
+          <span class="total-preco">R$ {{ carrinho.preco_total }}</span>
         </div>
         <button class="button-finalizar">FINALIZAR COMPRA</button>
       </div>
@@ -91,224 +90,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
-  data() {
-    return {
-      cart: {
-        items: [
-          {
-            titulo: "Tênis Olympikus",
-            img: require("../assets/tenis/tenis1.jpg"),
-            preco: 255,
-            cor: "Branco",
-            tamanho: 40,
-            qtd: 6,
-          },
-          {
-            titulo: "Tênis Nike",
-            img: require("../assets/tenis/tenis6.jpg"),
-            preco: 580,
-            cor: "Branco",
-            tamanho: 41,
-            qtd: 5,
-          },
-          {
-            titulo: "Tênis Adidas",
-            img: require("../assets/tenis/tenis2.jpg"),
-            preco: 350,
-            cor: "Preto",
-            tamanho: 42,
-            qtd: 2,
-          },
-        ],
-        totalPrice: 1185,
-      },
-    };
+  computed: {
+    ...mapState(["carrinho"]),
   },
 };
 </script>
 
 <style>
-.button-finalizar {
-  display: block;
-  font-size: 1.1em;
-  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
-  padding: 15px 0;
-  margin-top: 25px;
-  background: green;
-  color: white;
-  font-weight: bold;
-  border: none;
-  width: 100%;
-}
-
-.total-preco {
-  color: green;
-  font-weight: bold;
-}
-
-.total-carrinho {
-  font-size: 1.3em;
-}
-
-.total-carrinho {
-  display: flex;
-  justify-content: space-between;
-}
-
-.carrinho-infos-est {
-  width: calc(1000px - 600px - 25px);
-  margin-left: 25px;
-}
-
-.carrinho-infos {
-  margin-top: 25px;
-  width: 100%;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
-  padding: 25px;
-  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
-  align-self: flex-start;
-}
-
-.lixeira {
-  color: white;
-}
-
-.dim-lixeira {
-  background: red !important;
-  border: 1px solid red !important;
-}
-
-.diminuir:hover {
-  color: red;
-  border: 1px solid red;
-}
-
-.agregar:hover {
-  border: 1px solid green;
-  color: green;
-}
-
-.span-qtd {
-  margin: 0 13px;
-}
-
-.agregadores-button {
-  transition: 0.2s;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
-  background: none;
-  cursor: pointer;
-}
-
-.quantidade-agregadores {
-  margin-top: 7px;
-}
-
-.quantidade-titulo {
-  width: 100%;
-  display: inline-block;
-  text-align: center;
-  font-weight: bold;
-}
-
-.img-and-details {
-  align-items: center;
-  display: flex;
-}
-
-.quantidade-item-est {
-  align-self: auto;
-  color: grey;
-}
-
-.preco-item {
-  color: green;
-}
-
-.item-tamanho {
-  font-style: italic;
-  font-size: 0.9em;
-  color: grey;
-}
-
-.item-tamanho span {
-  font-weight: bold;
-}
-
-.item-titulo {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-.iten-details {
-  margin-left: 15px;
-}
-
-.carrinho-itens .carrinho-iten {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px;
-  border-radius: 5px;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
-}
-
-.carrinho-itens .carrinho-iten + .carrinho-iten {
-  margin-top: 12px;
-}
-
-.carrinho-itens {
-  margin-top: 25px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.carrinho-itens-est {
-  width: 600px;
-}
-
-.carrinho-titulo {
-  color: #8529ad;
-}
-
-.carrinho-icon-vazio {
-  text-align: center;
-  color: #8529ad;
-  font-size: 6em;
-}
-
-#button-voltar {
-  width: 380px;
-  display: inline-block;
-  margin-top: 5px;
-  text-align: center;
-  background: transparent;
-  border: 1px solid #8529ad;
-  color: #8529ad;
-  border-radius: 5px;
-  padding: 7px 0;
-  font-size: 1.3em;
-  cursor: pointer;
-}
-
-.carrinho-vazio {
-  display: flex;
-  margin-top: 40px;
-  gap: 10px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#carrinho-estrutura {
-  width: 1000px;
-  margin: 40px auto;
-  display: flex;
-}
 </style>

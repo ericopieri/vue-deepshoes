@@ -77,13 +77,20 @@
             >
             <ul class="dropdown-list">
               <li class="dropdown-list-item">
-                <a href="#" class="dropdown-link">Meus dados</a>
+                <a
+                  href="#"
+                  class="dropdown-link"
+                  @click.stop.prevent="$router.push({ name: 'Dados' })"
+                  >Meus dados</a
+                >
               </li>
-              <li
-                class="dropdown-list-item"
-                @click="$router.push({ name: 'Dados' })"
-              >
-                <a href="#" class="dropdown-link">Meu perfil</a>
+              <li class="dropdown-list-item">
+                <a
+                  href="#"
+                  class="dropdown-link"
+                  @click.stop.prevent="$router.push({ name: 'Dados' })"
+                  >Meu perfil</a
+                >
               </li>
               <li class="dropdown-list-item" @click.stop.prevent="submitLogout">
                 <a href="#" class="dropdown-link">Sair</a>

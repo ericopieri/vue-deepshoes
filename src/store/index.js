@@ -18,11 +18,21 @@ const vuexLocalStorage = new VuexPersist({
 export default new Vuex.Store({
   state: {
     generoHome: "Todos",
+    carrinho: {
+      itens: [],
+      preco_total: 0
+    }
   },
   mutations: {
     SET_GENERO_HOME(state, payload) {
       state.generoHome = payload;
     },
+    PUSH_CARRINHO(state, payload) {
+      state.carrinho.itens.push(payload);
+      let total = 0;
+      state.carrinho.itens.forEach((item) => total += Number(item.valor_unitario));
+      state.carrinho.preco_total = total;
+    }
   },
   actions: {},
   modules: {

@@ -11,7 +11,9 @@
         <ul id="product-medidas">
           <li class="medida-item">{{ produto.tamanho }}</li>
         </ul>
-        <button class="button-comprar">Comprar</button>
+        <button class="button-comprar" @click="salvarNoCarrinho(produto)">
+          Comprar
+        </button>
       </div>
     </section>
     <section id="produtos-relacionados">
@@ -105,6 +107,8 @@ import { Carousel, Slide } from "vue-carousel";
 
 import { api } from "../axios/index";
 
+import { mapState, mapMutations } from "vuex";
+
 export default {
   components: { Carousel, Slide },
   data() {
@@ -163,7 +167,12 @@ export default {
   async created() {
     await this.getProduto();
   },
+  computed: {
+    ...mapState(["carrinho"]),
+  },
   methods: {
+    ...mapMutations(["PUSH_CARRINHO"]),
+
     async getProduto() {
       const id = this.$route.params.id;
 
@@ -173,6 +182,11 @@ export default {
       } catch (err) {
         console.error(err);
       }
+    },
+    salvarNoCarrinho(pdt) {
+      const produto = Object.assign(pdt);
+      produto.qtd = 1;
+      this.PUSH_CARRINHO(produto);
     },
   },
 };
