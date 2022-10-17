@@ -20,8 +20,8 @@ export default new Vuex.Store({
     generoHome: "Todos",
     carrinho: {
       itens: [],
-      preco_total: 0
-    }
+      preco_total: 0,
+    },
   },
   mutations: {
     SET_GENERO_HOME(state, payload) {
@@ -30,9 +30,11 @@ export default new Vuex.Store({
     PUSH_CARRINHO(state, payload) {
       state.carrinho.itens.push(payload);
       let total = 0;
-      state.carrinho.itens.forEach((item) => total += Number(item.valor_unitario));
+      state.carrinho.itens.forEach(
+        (item) => (total += Number(item.valor_unitario))
+      );
       state.carrinho.preco_total = total;
-    }
+    },
   },
   actions: {},
   modules: {
