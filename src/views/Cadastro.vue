@@ -8,11 +8,15 @@
       <label for="nome">Sobrenome:</label>
       <input type="text" v-model="novoUsuario.sobrenome" />
       <label for="nome">Cpf:</label>
-      <input type="text" v-model="novoUsuario.cpf" />
+      <input type="text" v-mask="'###.###.###-##'" v-model="novoUsuario.cpf" />
       <label for="nome">Data de Nascimento:</label>
       <input type="date" v-model="novoUsuario.dt_nasc" />
       <label for="nome">Contato:</label>
-      <input type="text" v-model="novoUsuario.contato" />
+      <input
+        type="text"
+        v-model="novoUsuario.contato"
+        v-mask="'(##) #####-####'"
+      />
       <label for="nome">Sexo:</label>
       <select name="genero" id="genero-select" v-model="novoUsuario.genero">
         <option default>Indefinido</option>
