@@ -65,20 +65,19 @@
               class="nav-list-link"
               @click.stop.prevent="$router.push({ name: 'Carrinho' })"
               ><i id="icon-carrinho" class="fa-solid fa-cart-shopping"
-                ><span
-                  v-if="$store.getters.qtdItensCarrinho"
-                  id="qtd-itens-carrinho"
-                  >{{ $store.getters.qtdItensCarrinho }}</span
-                ></i
+                ><span v-if="carrinho.itens.length" id="qtd-itens-carrinho">{{
+                  carrinho.itens.length
+                }}</span></i
               ><span class="nav-item-span">Carrinho</span></a
             >
           </li>
           <li class="nav-item-menu">
-            <router-link :to="{ path: '/login' }">
-              <a href="#" class="nav-list-link">
-                <i class="fa-solid fa-user"></i
-                ><span class="nav-item-span">Logar</span></a
-              ></router-link
+            <a href="#" class="nav-list-link">
+              <i class="fa-solid fa-user"></i
+              ><span v-if="!isLogged" class="nav-item-span">Logar</span
+              ><span v-else class="nav-item-span"
+                >Olá, {{ usuario.nome }}</span
+              ></a
             >
             <ul class="dropdown-list">
               <li class="dropdown-list-item">
@@ -86,7 +85,7 @@
                   href="#"
                   class="dropdown-link"
                   @click.stop.prevent="$router.push({ name: 'Dados' })"
-                  >Meus dados</a
+                  >Perfil</a
                 >
               </li>
               <li class="dropdown-list-item">
@@ -94,7 +93,7 @@
                   href="#"
                   class="dropdown-link"
                   @click.stop.prevent="$router.push({ name: 'Dados' })"
-                  >Meu perfil</a
+                  >Pedidos</a
                 >
               </li>
               <li class="dropdown-list-item" @click.stop.prevent="submitLogout">
@@ -114,16 +113,25 @@
 
 <script>
 import { mapActions, mapMutations, mapState } from "vuex";
+import { api } from "../axios/index";
 
 export default {
   data() {
     return {
       barraClosed: true,
+      usuario: {},
     };
   },
-  computed: {
-    ...mapState(["generoHome"]),
+
+  created() {
+    this.getUsuario();
   },
+
+  computed: {
+    ...mapState(["generoHome", "carrinho"]),
+    ...mapState("auth", ["isLogged"]),
+  },
+
   methods: {
     ...mapActions("auth", ["LOGOUT"]),
     ...mapMutations(["SET_GENERO_HOME"]),
@@ -132,7 +140,16 @@ export default {
       this.LOGOUT();
       this.$router.push({ name: "Login" });
     },
+
+    async getUsuario() {
+      const { data } = await api.get("/api/usuarios/");
+      const [usuario] = data;
+
+      this.usuario = usuario;
+      console.log(this.usuario);
+    },
   },
+
   watch: {
     generoHome() {
       this.barraClosed = true;
