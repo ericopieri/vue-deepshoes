@@ -27,6 +27,7 @@ export default new Vuex.Store({
     SET_GENERO_HOME(state, payload) {
       state.generoHome = payload;
     },
+
     PUSH_CARRINHO(state, payload) {
       state.carrinho.itens.push(payload);
       let total = 0;
@@ -37,6 +38,11 @@ export default new Vuex.Store({
     },
   },
   actions: {},
+  getters: {
+    qtdItensCarrinho(state) {
+      return state.carrinho.itens.length
+    }
+  },
   modules: {
     auth,
   },

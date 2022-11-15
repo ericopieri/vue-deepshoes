@@ -64,7 +64,12 @@
               href="#"
               class="nav-list-link"
               @click.stop.prevent="$router.push({ name: 'Carrinho' })"
-              ><i class="fa-solid fa-cart-shopping"></i
+              ><i id="icon-carrinho" class="fa-solid fa-cart-shopping"
+                ><span
+                  v-if="$store.getters.qtdItensCarrinho"
+                  id="qtd-itens-carrinho"
+                  >{{ $store.getters.qtdItensCarrinho }}</span
+                ></i
               ><span class="nav-item-span">Carrinho</span></a
             >
           </li>

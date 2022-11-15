@@ -1048,3 +1048,21 @@ select:focus {
   margin: 40px auto;
   display: flex;
 }
+
+#icon-carrinho {
+  position: relative;
+}
+
+#icon-carrinho #qtd-itens-carrinho {
+  position: absolute;
+  bottom: calc(100% - 9px);
+  left: calc(100% - 9px);
+  background: red;
+  border-radius: 50%;
+  color: white;
+  font-size: 0.6em;
+  height: 18px;
+  line-height: 18px;
+  width: 18px;
+  text-align: center;
+}
