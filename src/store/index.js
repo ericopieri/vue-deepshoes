@@ -2,6 +2,8 @@ import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersist from "vuex-persist";
 
+import { api } from "../axios/index";
+
 import auth from "./modules/auth";
 
 Vue.use(Vuex);
@@ -24,25 +26,50 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    SET_ITENS_CARRINHO(state, carrinho) {
+      state.carrinho.itens = carrinho.itens;
+      state.carrinho.preco_total = carrinho.preco_total;
+    },
+
+    INCREMENTA_PRODUTO(state, id) {
+      const produto = state.carrinho.itens.find(
+        (item) => item.produto.id === id
+      );
+
+      produto.qtd_produto += 1;
+    },
+
     SET_GENERO_HOME(state, payload) {
       state.generoHome = payload;
     },
 
     PUSH_CARRINHO(state, payload) {
       state.carrinho.itens.push(payload);
-      let total = 0;
-      state.carrinho.itens.forEach(
-        (item) => (total += Number(item.valor_unitario))
+    },
+
+    UPDATE_PRECO_TOTAL(state) {
+      const preco_total = state.carrinho.itens.reduce(
+        (total, item) =>
+          (total += item.produto.valor_unitario * item.qtd_produto),
+        0
       );
-      state.carrinho.preco_total = total;
+
+      state.carrinho.preco_total = preco_total;
     },
   },
-  actions: {},
-  getters: {
-    qtdItensCarrinho(state) {
-      return state.carrinho.itens.length
-    }
+  actions: {
+    async SAVE_CARRINHO({ state }, id) {
+      await api.patch("api/pedidos/" + id, state.carrinho.itens);
+    },
+
+    async GET_CARRINHO({ commit }) {
+      const { data } = await api.get("api/carrinho/");
+      const [carrinho] = data;
+
+      commit("SET_ITENS_CARRINHO", carrinho);
+    },
   },
+  getters: {},
   modules: {
     auth,
   },

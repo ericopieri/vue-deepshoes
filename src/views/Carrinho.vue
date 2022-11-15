@@ -33,25 +33,25 @@
         >
           <div class="img-and-details">
             <img
-              :src="item.imagem"
+              :src="item.produto.imagem"
               style="width: 100px; display: inline-block"
               alt="Tênis"
             />
             <div class="iten-details">
               <h2 class="item-titulo" style="display: block">
-                {{ item.nome }}
+                {{ item.produto.nome }}
               </h2>
               <div class="item-tamanho" style="display: block">
-                <span>Tamanho:</span> {{ item.tamanho }}
+                <span>Tamanho:</span> {{ item.produto.tamanho }}
               </div>
               <div class="item-tamanho" style="display: block">
-                <span>Cor:</span> {{ item.cor }}
+                <span>Cor:</span> {{ item.produto.cor }}
               </div>
               <div class="item-tamanho" style="display: block">
                 <span>Preço:</span>
                 <span class="preco-item">
                   R$
-                  {{ item.valor_unitario }}</span
+                  {{ item.produto.valor_unitario }}</span
                 >
               </div>
             </div>
@@ -59,17 +59,19 @@
           <div class="quantidade-item-est">
             <span class="quantidade-titulo">Quantidade</span>
             <div class="quantidade-agregadores">
-              <button class="agregadores-button agregar" @click="item.qtd += 1">
-                <i class="fa-solid fa-plus"></i>
-              </button>
-              <span class="span-qtd">{{ item.qtd }}</span>
               <button
                 class="agregadores-button diminuir"
-                :class="{ 'dim-lixeira': item.qtd > 1 ? false : true }"
-                @click="item.qtd -= 1"
+                :class="{ 'dim-lixeira': item.qtd_produto > 1 ? false : true }"
               >
-                <i v-if="item.qtd > 1" class="fa-solid fa-minus"></i>
-                <i v-else class="fa-solid fa-trash-can lixeira"></i>
+                <i
+                  v-if="item.qtd == '1'"
+                  class="fa-solid fa-trash-can lixeira"
+                ></i>
+                <i v-else class="fa-solid fa-minus"></i>
+              </button>
+              <span class="span-qtd">{{ item.qtd_produto }}</span>
+              <button class="agregadores-button agregar">
+                <i class="fa-solid fa-plus"></i>
               </button>
             </div>
           </div>
@@ -97,6 +99,10 @@ import { mapState } from "vuex";
 export default {
   computed: {
     ...mapState(["carrinho"]),
+  },
+
+  mounted() {
+    console.log(this.carrinho);
   },
 };
 </script>

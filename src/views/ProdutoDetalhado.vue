@@ -171,7 +171,11 @@ export default {
     ...mapState(["carrinho"]),
   },
   methods: {
-    ...mapMutations(["PUSH_CARRINHO"]),
+    ...mapMutations([
+      "PUSH_CARRINHO",
+      "INCREMENTA_PRODUTO",
+      "UPDATE_PRECO_TOTAL",
+    ]),
 
     async getProduto() {
       const id = this.$route.params.id;
@@ -183,10 +187,24 @@ export default {
         console.error(err);
       }
     },
+
     salvarNoCarrinho(pdt) {
-      const produto = Object.assign(pdt);
-      produto.qtd = 1;
-      this.PUSH_CARRINHO(produto);
+      const produtoExiste = this.carrinho.itens.find(
+        (item) => item.produto.id == pdt.id
+      );
+
+      if (produtoExiste) {
+        this.INCREMENTA_PRODUTO(pdt.id);
+      } else {
+        const newItem = {
+          produto: Object.assign(pdt),
+          qtd_produto: 1,
+        };
+
+        this.PUSH_CARRINHO(newItem);
+      }
+
+      this.UPDATE_PRECO_TOTAL();
     },
   },
 };
