@@ -25,6 +25,9 @@
       <button id="button-logar" @click.stop.prevent="submitLogin">
         Entrar
       </button>
+      <p class="error" v-show="hasError">
+        Ocorreu um erro, confira os dados e tente novamente!
+      </p>
     </form>
     <span @click.stop.prevent="toRegister" style="cursor: pointer"
       >Não tem uma conta?</span
@@ -39,23 +42,25 @@ export default {
   data() {
     return {
       usuario: {},
-      menssagemErro: "",
+      hasError: false,
     };
   },
+
   mounted() {
     this.LOGOUT();
   },
+
   methods: {
     ...mapActions("auth", ["LOGIN", "LOGOUT"]),
 
     async submitLogin() {
-      this.menssagemErro = "";
-
+      this.hasError = false;
       const erro = await this.LOGIN(this.usuario);
 
       if (!erro) this.$router.push({ name: "Home" });
-      else this.menssagemErro = erro;
+      else this.hasError = true;
     },
+
     toRegister() {
       this.$router.push({ name: "Cadastro" });
     },
@@ -63,4 +68,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.error {
+  text-align: center;
+  font-size: 0.9em;
+  color: red;
+}
+</style>

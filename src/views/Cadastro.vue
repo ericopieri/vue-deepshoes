@@ -20,9 +20,9 @@
         <option value="Feminino" default>Feminino</option>
       </select>
       <label for="nome">Senha:</label>
-      <input type="text" v-model="novoUsuario.password" />
+      <input type="password" v-model="novoUsuario.password" />
       <label for="nome">Confirmar senha:</label>
-      <input type="text" v-model="novoUsuario.confirmarSenha" />
+      <input type="password" v-model="novoUsuario.confirmarSenha" />
       <button id="button-cadastro" @click.stop.prevent="submitRegister">
         Realizar cadastro
       </button>
