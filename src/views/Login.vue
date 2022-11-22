@@ -52,13 +52,16 @@ export default {
 
   methods: {
     ...mapActions("auth", ["LOGIN", "LOGOUT"]),
+    ...mapActions(["GET_CARRINHO"]),
 
     async submitLogin() {
       this.hasError = false;
       const erro = await this.LOGIN(this.usuario);
 
-      if (!erro) this.$router.push({ name: "Home" });
-      else this.hasError = true;
+      if (!erro) {
+        this.$router.push({ name: "Home" });
+        this.GET_CARRINHO();
+      } else this.hasError = true;
     },
 
     toRegister() {

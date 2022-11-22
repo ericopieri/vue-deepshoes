@@ -12,7 +12,6 @@ const vuexLocalStorage = new VuexPersist({
   key: "vuex", // The key to store the state on in the storage provider.
   storage: window.localStorage, // or window.sessionStorage or localForage
   // Function that passes the state and returns the state with only the objects you want to store.
-  // reducer: state => state,
   // Function that passes a mutation and lets you decide if it should update the state in localStorage.
   // filter: mutation => (true)
 });
@@ -20,15 +19,26 @@ const vuexLocalStorage = new VuexPersist({
 export default new Vuex.Store({
   state: {
     generoHome: "Todos",
+    hasCarrinho: false,
     carrinho: {
+      id: 0,
       itens: [],
       preco_total: 0,
     },
   },
   mutations: {
     SET_ITENS_CARRINHO(state, carrinho) {
-      state.carrinho.itens = carrinho.itens;
-      state.carrinho.preco_total = carrinho.preco_total;
+      state.carrinho = {
+        id: 0,
+        itens: [],
+        preco_total: 0,
+      };
+
+      if (carrinho) {
+        state.carrinho.itens = carrinho.itens;
+        state.carrinho.id = carrinho.id;
+        state.carrinho.preco_total = carrinho.preco_total;
+      }
     },
 
     INCREMENTA_PRODUTO(state, id) {
@@ -58,8 +68,18 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async SAVE_CARRINHO({ state }, id) {
-      await api.patch("api/pedidos/" + id, state.carrinho.itens);
+    async UPDATE_CARRINHO({ state }) {
+      const itens = state.carrinho.itens.map((item) => {
+        return {
+          produto: item.produto.id,
+          qtd_produto: item.qtd_produto,
+        };
+      });
+
+      await api.patch("api/pedidos/" + state.carrinho.id + "/", {
+        itens: itens,
+        preco_total: state.carrinho.preco_total,
+      });
     },
 
     async GET_CARRINHO({ commit }) {

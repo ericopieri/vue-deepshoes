@@ -87,18 +87,24 @@
             >R$ {{ Number(carrinho.preco_total).toFixed(2) }}</span
           >
         </div>
-        <button class="button-finalizar">FINALIZAR COMPRA</button>
+        <button class="button-finalizar" @click="UPDATE_CARRINHO">
+          FINALIZAR COMPRA
+        </button>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   computed: {
     ...mapState(["carrinho"]),
+  },
+
+  methods: {
+    ...mapActions(["UPDATE_CARRINHO"]),
   },
 
   mounted() {

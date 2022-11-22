@@ -188,7 +188,7 @@ export default {
       }
     },
 
-    salvarNoCarrinho(pdt) {
+    async salvarNoCarrinho(pdt) {
       const produtoExiste = this.carrinho.itens.find(
         (item) => item.produto.id == pdt.id
       );
@@ -200,6 +200,18 @@ export default {
           produto: Object.assign(pdt),
           qtd_produto: 1,
         };
+
+        if (!this.carrinho.itens.length) {
+          await api.post("api/pedidos/", {
+            itens: [
+              {
+                produto: newItem.produto.id,
+                qtd_produto: newItem.qtd_produto,
+              },
+            ],
+            preco_total: newItem.valor_unitario,
+          });
+        }
 
         this.PUSH_CARRINHO(newItem);
       }
