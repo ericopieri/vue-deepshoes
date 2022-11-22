@@ -81,8 +81,6 @@ export default {
       const { data } = await api.get("/api/pedidos/" + id);
 
       this.pedido = data;
-
-      console.log(this.pedido);
     },
   },
 };
