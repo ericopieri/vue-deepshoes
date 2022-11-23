@@ -54,50 +54,74 @@
           >Quantos % dos Compradores recomendam este produto?</span
         >
         <div class="est-porcentagem">
-          <div class="porcentagem">
-            <div class="porcentagem-modulo">10%</div>
+          <div
+            class="porcentagem"
+            :style="{ width: produto.porcentagem_recomendado + '%' }"
+          >
+            <div class="porcentagem-modulo">
+              {{ produto.porcentagem_recomendado }}%
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="box-comentarios">
+    <div id="loading" v-if="isLoadingComentarios">
+      <img src="../assets/tenis/loader.gif" alt="loading" />
+    </div>
+    <section id="box-comentarios" v-else>
       <span class="titulo-comentarios" style="color: grey"> Comentários </span>
-      <div
-        v-for="(comentario, index) in comentarios"
-        :key="index"
-        class="box-comentario"
-      >
-        <div class="avaliacao-comentario-div">
-          Avaliação:
-          <span
-            class="avaliacao-comentario"
-            :class="{ verdinho: comentario.nota > 5 }"
-            >{{ comentario.nota }}/10</span
-          >
-        </div>
-        <div class="comentario-conteudo">{{ comentario.conteudo }}</div>
-        <div class="user-comentario-div">
-          <span class="usuario-comentario">{{ comentario.user }}</span>
-          <span class="dia-publicacao">{{
-            new Date().toLocaleDateString()
-          }}</span>
-          <span
-            class="recomendacao"
-            :class="{ recomendado: comentario.recomendou }"
-            >{{
-              comentario.recomendou
-                ? `Recomendou este Produto!`
-                : "Não recomendou este Produto!"
-            }}
-            <i
-              v-if="comentario.recomendou"
-              class="fa-solid fa-thumbs-up icon-recomendou"
-            ></i>
-            <i v-else class="fa-solid fa-thumbs-down icon-recomendou"></i
-          ></span>
+      <img
+        v-if="isLoadingComentarios"
+        src="../assets/tenis/loader.gif"
+        alt="loading"
+      />
+      <div class="est-comentarios" v-if="comentarios.length">
+        <div
+          v-for="(comentario, index) in comentarios"
+          :key="index"
+          class="box-comentario"
+        >
+          <div class="avaliacao-comentario-div">
+            Avaliação:
+            <span
+              class="avaliacao-comentario"
+              :class="{ verdinho: comentario.nota > 5 }"
+              >{{ comentario.nota }}/10</span
+            >
+          </div>
+          <div class="comentario-conteudo">{{ comentario.texto }}</div>
+          <div class="user-comentario-div">
+            <span class="usuario-comentario"
+              >{{ comentario.usuario.nome }}
+              {{ comentario.usuario.sobrenome }}</span
+            >
+            <span class="dia-publicacao"
+              >{{ new Date(comentario.data_avaliacao).toLocaleDateString() }} às
+              {{
+                new Date(comentario.data_avaliacao).toLocaleTimeString()
+              }}</span
+            >
+            <span
+              class="recomendacao"
+              :class="{ recomendado: comentario.recomendou }"
+              >{{
+                comentario.recomendou
+                  ? `Recomendou este Produto!`
+                  : "Não recomendou este Produto!"
+              }}
+              <i
+                v-if="comentario.recomendou"
+                class="fa-solid fa-thumbs-up icon-recomendou"
+              ></i>
+              <i v-else class="fa-solid fa-thumbs-down icon-recomendou"></i
+            ></span>
+          </div>
         </div>
       </div>
+      <section class="sem-comentarios" v-else>
+        Ainda não há comentários feitos sobre o produto!
+      </section>
     </section>
   </div>
 </template>
@@ -114,6 +138,7 @@ export default {
   data() {
     return {
       produto: {},
+      isLoadingComentarios: true,
       produtosRelacionados: [
         {
           titulo: "Tênis Olympikus",
@@ -146,26 +171,12 @@ export default {
           preco: 510,
         },
       ],
-      comentarios: [
-        {
-          user: "Michael Jackson",
-          conteudo:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.",
-          recomendou: true,
-          nota: 10,
-        },
-        {
-          user: "Thomas Shelby",
-          conteudo:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          recomendou: false,
-          nota: 4.5,
-        },
-      ],
+      comentarios: [],
     };
   },
   async created() {
     await this.getProduto();
+    await this.getComentarios();
   },
   computed: {
     ...mapState(["carrinho"]),
@@ -176,6 +187,20 @@ export default {
       "INCREMENTA_PRODUTO",
       "UPDATE_PRECO_TOTAL",
     ]),
+
+    async getComentarios() {
+      this.isLoadingComentarios = true;
+      try {
+        const { data } = await api.get("api/avaliacoes/?id=" + this.produto.id);
+        const { results } = data;
+
+        this.comentarios = results;
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.isLoadingComentarios = false;
+      }
+    },
 
     async getProduto() {
       const id = this.$route.params.id;
