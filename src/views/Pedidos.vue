@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     async getPedidos() {
-      const { data } = await api.get("/api/pedidos/");
+      const { data } = await api.get("/api/pedidos/?concluidos=True");
       this.pedidos = data;
     },
   },
