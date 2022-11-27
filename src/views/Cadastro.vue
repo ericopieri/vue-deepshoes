@@ -24,9 +24,26 @@
         <option value="Feminino" default>Feminino</option>
       </select>
       <label for="nome">Senha:</label>
-      <input type="password" v-model="novoUsuario.password" />
+      <input
+        type="password"
+        v-model="novoUsuario.password"
+        :class="{
+          'senhas-erradas': hasError.errorSenhas,
+        }"
+      />
       <label for="nome">Confirmar senha:</label>
-      <input type="password" v-model="novoUsuario.confirmarSenha" />
+      <input
+        type="password"
+        v-model="confirmarSenha"
+        :class="{
+          'senhas-erradas': hasError.errorSenhas,
+        }"
+      />
+      <span
+        class="error-cadastro"
+        v-show="hasError.errorSenhas || hasError.errosGerais"
+        >{{ errorMessage }}</span
+      >
       <button id="button-cadastro" @click.stop.prevent="submitRegister">
         Realizar cadastro
       </button>
@@ -43,6 +60,11 @@ export default {
     return {
       novoUsuario: {},
       confirmarSenha: "",
+      hasError: {
+        errorSenhas: false,
+        errosGerais: false,
+      },
+      errorMessage: "",
     };
   },
   methods: {
@@ -50,6 +72,22 @@ export default {
 
     async submitRegister() {
       this.LOGOUT();
+
+      this.hasError.errorSenhas = false;
+      this.hasError.errosGerais = false;
+      this.errorMessage = "";
+
+      if (!(this.novoUsuario.password == this.confirmarSenha)) {
+        this.hasError.errorSenhas = true;
+        this.errorMessage = "As credenciais não batem!";
+        return;
+      } else {
+        if (!this.conferirSenha()) {
+          this.hasError.errorSenhas = true;
+          this.errorMessage =
+            "A sua senha é muito fraca! Ela deve conter pelos menos uma letra maiuscula e um número!";
+        }
+      }
 
       const erro = await this.REGISTER(this.novoUsuario);
 
@@ -59,15 +97,40 @@ export default {
 
         this.$router.push({ path: "/home" });
       } else {
-        console.log(erro);
+        this.hasError.errosGerais = true;
+        this.errorMessage =
+          "Ocorreu algum erro! Confira os campos e tente novamente!";
       }
     },
+
     async REGISTER() {
       try {
         await api.post("/api/usuarios/", this.novoUsuario);
       } catch (err) {
         return err;
       }
+    },
+
+    conferirSenha() {
+      const { password } = this.novoUsuario;
+
+      if (
+        !this.containsUppercase(password) &&
+        !this.containsNumbers(password) &&
+        !(password.length >= 8)
+      ) {
+        return false;
+      }
+
+      return true;
+    },
+
+    containsUppercase(str) {
+      return /[A-Z]/.test(str);
+    },
+
+    containsNumbers(str) {
+      return /[0-9]/.test(str);
     },
   },
 };
