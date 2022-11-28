@@ -82,9 +82,4 @@ export default {
 </script>
 
 <style>
-.error-avaliacao {
-  margin-top: 10px;
-  color: red;
-  font-size: 0.975em;
-}
 </style>
