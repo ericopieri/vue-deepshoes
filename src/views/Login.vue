@@ -72,9 +72,4 @@ export default {
 </script>
 
 <style>
-.error {
-  text-align: center;
-  font-size: 0.9em;
-  color: red;
-}
 </style>
