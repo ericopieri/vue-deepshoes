@@ -64,6 +64,11 @@ const routes = [
             path: "pedidos/:id",
             component: () => import("../views/PedidoDetalhado.vue"),
           },
+          {
+            name: "Avaliar",
+            path: "avaliar/:id",
+            component: () => import("../views/Avaliar.vue"),
+          },
         ],
       },
     ],

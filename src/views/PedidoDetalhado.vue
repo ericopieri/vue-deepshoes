@@ -6,7 +6,7 @@
       <i class="fa-solid fa-check icon-check-pedido"></i>
     </h2>
     <h2 class="titulo-pedidos" id="endereco-titulo">Endereço de Entrega:</h2>
-    <div class="infos-endereco">
+    <div class="infos-endereco" v-if="pedido.endereco_entrega">
       <p>
         {{ pedido.endereco_entrega.logradouro }},
         {{ pedido.endereco_entrega.numero }} -
@@ -51,6 +51,19 @@
           Subtotal:
           <span style="color: green">R$ {{ item.sub_total }}</span>
         </div>
+        <button
+          class="avaliar"
+          @click="
+            $router.push({
+              name: 'Avaliar',
+              params: {
+                id: item.produto.id,
+              },
+            })
+          "
+        >
+          Avaliar
+        </button>
       </div>
       <div class="titulo-pedidos" id="preco-total">
         Valor total:
@@ -87,68 +100,4 @@ export default {
 </script>
 
 <style>
-.infos-endereco {
-  margin-bottom: 15px;
-}
-
-#endereco-titulo {
-  margin-bottom: 8px;
-}
-
-#preco-total {
-  width: auto;
-  font-weight: bold;
-  margin: 0;
-  display: inline-block;
-  text-align: right;
-  padding: 5px 5px;
-}
-
-.sub-total {
-  font-weight: bold;
-  font-size: 1.2em;
-  margin-left: auto;
-}
-
-.item-info-pedido {
-  font-style: italic;
-  font-size: 0.9em;
-  color: grey;
-}
-
-.infos-item {
-  margin-left: 25px;
-}
-
-.item-pedido-nome {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-.status-pedido {
-  color: green;
-}
-.icon-check-pedido {
-  color: green;
-  margin-left: 5px;
-  font-size: 1.2em;
-}
-#container-itens-pedido {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  flex-wrap: nowrap;
-}
-.box-item-pedido {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  width: 100%;
-  border-radius: 3px;
-  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
-  border: 1px solid #e0e0e0;
-}
-#imagem-item-pedido {
-  width: 105px;
-}
 </style>
