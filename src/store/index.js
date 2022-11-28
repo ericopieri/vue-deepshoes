@@ -41,12 +41,20 @@ export default new Vuex.Store({
       }
     },
 
-    INCREMENTA_PRODUTO(state, id) {
+    INCREMENTA_PRODUTO(state, { id, vaiIncrementar }) {
       const produto = state.carrinho.itens.find(
         (item) => item.produto.id === id
       );
 
-      produto.qtd_produto += 1;
+      if (vaiIncrementar) {
+        produto.qtd_produto += 1;
+      } else {
+        if (produto.qtd_produto == 1) {
+          state.carrinho.itens.splice(state.carrinho.itens.indexOf(produto), 1)
+        } else {
+          produto.qtd_produto -= 1;
+        }
+      }
     },
 
     SET_GENERO_HOME(state, payload) {

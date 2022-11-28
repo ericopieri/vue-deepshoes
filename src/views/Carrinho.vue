@@ -61,16 +61,30 @@
             <div class="quantidade-agregadores">
               <button
                 class="agregadores-button diminuir"
+                @click="
+                  INCREMENTA_PRODUTO({
+                    id: item.produto.id,
+                    vaiIncrementar: false,
+                  })
+                "
                 :class="{ 'dim-lixeira': item.qtd_produto > 1 ? false : true }"
               >
                 <i
-                  v-if="item.qtd == '1'"
+                  v-if="item.qtd_produto == '1'"
                   class="fa-solid fa-trash-can lixeira"
                 ></i>
                 <i v-else class="fa-solid fa-minus"></i>
               </button>
               <span class="span-qtd">{{ item.qtd_produto }}</span>
-              <button class="agregadores-button agregar">
+              <button
+                class="agregadores-button agregar"
+                @click="
+                  INCREMENTA_PRODUTO({
+                    id: item.produto.id,
+                    vaiIncrementar: true,
+                  })
+                "
+              >
                 <i class="fa-solid fa-plus"></i>
               </button>
             </div>
@@ -96,7 +110,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
   computed: {
@@ -105,6 +119,7 @@ export default {
 
   methods: {
     ...mapActions(["UPDATE_CARRINHO"]),
+    ...mapMutations(["INCREMENTA_PRODUTO"]),
   },
 
   mounted() {
