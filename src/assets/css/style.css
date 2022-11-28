@@ -828,6 +828,7 @@ select:focus {
 }
 
 .box-endereco {
+  background: white;
   border-radius: 3px;
   box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
   border: 1px solid #e0e0e0;
