@@ -21,6 +21,11 @@ const routes = [
         component: Home,
       },
       {
+        path: "/finalizar",
+        name: "Finalizar",
+        component: () => import("../views/Finalizar.vue"),
+      },
+      {
         path: "/admin",
         component: () => import("../views/CadastroProdutos.vue"),
       },
