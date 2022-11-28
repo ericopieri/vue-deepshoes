@@ -15,8 +15,8 @@ export default {
     tokenChange();
   },
 
-  mounted() {
-    this.GET_CARRINHO();
+  async mounted() {
+    await this.GET_CARRINHO();
 
     window.addEventListener("beforeunload", async () => {
       await this.UPDATE_CARRINHO();
