@@ -50,7 +50,7 @@ export default new Vuex.Store({
         produto.qtd_produto += 1;
       } else {
         if (produto.qtd_produto == 1) {
-          state.carrinho.itens.splice(state.carrinho.itens.indexOf(produto), 1)
+          state.carrinho.itens.splice(state.carrinho.itens.indexOf(produto), 1);
         } else {
           produto.qtd_produto -= 1;
         }
