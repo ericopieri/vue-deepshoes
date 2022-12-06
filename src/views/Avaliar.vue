@@ -48,7 +48,9 @@ export default {
   data() {
     return {
       produto: {},
-      novaAvaliacao: {},
+      novaAvaliacao: {
+        recomendou: false,
+      },
       hasError: false,
     };
   },
