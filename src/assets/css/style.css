@@ -486,6 +486,10 @@ select:focus {
 /* Footer */
 
 #footer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
   text-align: center;
   margin-top: 25px;
   padding: 20px;
@@ -1491,4 +1495,13 @@ select:focus {
 .button-comprar:hover {
   background: none;
   color: #8529ad;
+}
+
+.faq-button {
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  background: lightgray;
+  color: black;
+  border: none;
 }
