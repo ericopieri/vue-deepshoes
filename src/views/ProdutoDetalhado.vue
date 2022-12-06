@@ -131,7 +131,7 @@ import { Carousel, Slide } from "vue-carousel";
 
 import { api } from "../axios/index";
 
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   components: { Carousel, Slide },
@@ -182,11 +182,8 @@ export default {
     ...mapState(["carrinho"]),
   },
   methods: {
-    ...mapMutations([
-      "PUSH_CARRINHO",
-      "INCREMENTA_PRODUTO",
-      "UPDATE_PRECO_TOTAL",
-    ]),
+    ...mapMutations(["PUSH_CARRINHO", "INCREMENTA_PRODUTO"]),
+    ...mapActions(["GET_CARRINHO"]),
 
     async getComentarios() {
       this.isLoadingComentarios = true;
@@ -241,12 +238,13 @@ export default {
             ],
             preco_total: newItem.valor_unitario,
           });
+
+          this.GET_CARRINHO();
+          return;
         }
 
         this.PUSH_CARRINHO(newItem);
       }
-
-      this.UPDATE_PRECO_TOTAL();
     },
   },
 };

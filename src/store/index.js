@@ -37,7 +37,14 @@ export default new Vuex.Store({
       if (carrinho) {
         state.carrinho.itens = carrinho.itens;
         state.carrinho.id = carrinho.id;
-        state.carrinho.preco_total = carrinho.preco_total;
+
+        const preco_total = state.carrinho.itens.reduce(
+          (total, item) =>
+            (total += item.produto.valor_unitario * item.qtd_produto),
+          0
+        );
+
+        state.carrinho.preco_total = preco_total.toFixed(2);
       }
     },
 
@@ -55,6 +62,14 @@ export default new Vuex.Store({
           produto.qtd_produto -= 1;
         }
       }
+
+      const preco_total = state.carrinho.itens.reduce(
+        (total, item) =>
+          (total += item.produto.valor_unitario * item.qtd_produto),
+        0
+      );
+
+      state.carrinho.preco_total = preco_total.toFixed(2);
     },
 
     SET_GENERO_HOME(state, payload) {
@@ -63,16 +78,14 @@ export default new Vuex.Store({
 
     PUSH_CARRINHO(state, payload) {
       state.carrinho.itens.push(payload);
-    },
 
-    UPDATE_PRECO_TOTAL(state) {
       const preco_total = state.carrinho.itens.reduce(
         (total, item) =>
           (total += item.produto.valor_unitario * item.qtd_produto),
         0
       );
 
-      state.carrinho.preco_total = preco_total;
+      state.carrinho.preco_total = preco_total.toFixed(2);
     },
   },
   actions: {
@@ -84,9 +97,10 @@ export default new Vuex.Store({
         };
       });
 
+      console.log(state.carrinho.id)
+
       await api.patch("api/pedidos/" + state.carrinho.id + "/", {
-        itens: itens,
-        preco_total: state.carrinho.preco_total,
+        itens: itens
       });
     },
 

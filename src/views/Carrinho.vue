@@ -101,7 +101,7 @@
             >R$ {{ Number(carrinho.preco_total).toFixed(2) }}</span
           >
         </div>
-        <button class="button-finalizar" @click="UPDATE_CARRINHO">
+        <button class="button-finalizar" @click="finalizandoCompra">
           FINALIZAR COMPRA
         </button>
       </div>
@@ -120,6 +120,11 @@ export default {
   methods: {
     ...mapActions(["UPDATE_CARRINHO"]),
     ...mapMutations(["INCREMENTA_PRODUTO"]),
+
+    async finalizandoCompra() {
+      await this.UPDATE_CARRINHO();
+      this.$router.push({ name: "Finalizar" });
+    },
   },
 
   mounted() {

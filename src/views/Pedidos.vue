@@ -15,7 +15,7 @@
             <div><b>Data de Entrega:</b> {{ pedido.data_entrega }}</div>
           </div>
           <div class="preco-pedido">
-            <b>Preço:</b> R$ {{ pedido.preco_total }}
+            <b>Preço:</b> R$ {{ pedido.preco_final }}
           </div>
         </div>
         <button
