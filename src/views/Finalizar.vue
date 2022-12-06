@@ -139,19 +139,21 @@ export default {
         return (qtd_itens += item.qtd_produto);
       }, 0);
 
-      if (qtd_itens > 2) {
+      if (qtd_itens > 2 && qtd_itens <= 5) {
         this.descontoMenssagem = "Desconto de 10% aplicado!";
         this.preco_novo = (this.carrinho.preco_total * 0.9).toFixed(2);
         return;
       }
 
-      if (qtd_itens > 5) {
+      if (qtd_itens > 5 && qtd_itens <= 10) {
+        this.descontoMenssagem = "Desconto de 15% aplicado!";
         this.preco_novo = (this.carrinho.preco_total * 0.85).toFixed(2);
         return;
       }
 
       if (qtd_itens > 10) {
-        this.preco_novo = (this.carrinho.preco_total * 0.8).toFixed(2);
+        this.descontoMenssagem = "Desconto de 25% aplicado!";
+        this.preco_novo = (this.carrinho.preco_total * 0.75).toFixed(2);
         return;
       }
 
