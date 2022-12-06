@@ -203,7 +203,7 @@ export default {
           endereco_entrega: this.endereco_entrega,
         });
         this.$router.push({ name: "Carrinho" });
-        this.GET_CARRINHO();
+        await this.GET_CARRINHO();
       } catch (e) {
         console.error(e);
       }
