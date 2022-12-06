@@ -59,8 +59,8 @@ export default {
       const erro = await this.LOGIN(this.usuario);
 
       if (!erro) {
+        await this.GET_CARRINHO();
         this.$router.push({ name: "Home" });
-        this.GET_CARRINHO();
       } else this.hasError = true;
     },
 
