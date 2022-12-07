@@ -32,7 +32,6 @@
             name="preco"
             placeholder="Preço"
             v-model="novoProduto.valor_unitario"
-            v-mask="'##.##'"
           />
           <label for="qtd_estoque">Quantidade em Estoque:</label>
           <input
