@@ -108,7 +108,12 @@
     <main id="main">
       <router-view></router-view>
     </main>
-    <footer id="footer"><span class="projeto-rodape">Projeto Integrador - 2022</span><button class="faq-button" @click="$router.push({ name: 'Faq' })">Perguntas frequentes</button></footer>
+    <footer id="footer">
+      <span class="projeto-rodape">Projeto Integrador - 2022</span
+      ><button class="faq-button" @click="$router.push({ name: 'Faq' })">
+        Perguntas frequentes
+      </button>
+    </footer>
   </div>
 </template>
 
