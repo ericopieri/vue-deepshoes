@@ -37,16 +37,17 @@
           @click.stop.prevent="$router.push({ name: 'Home' })"
         />
       </div>
-      <form action="" id="form-filtro">
-        <input
-          type="text"
-          id="filtro-home"
-          placeholder="O que você está procurando?"
-        />
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </form>
       <nav id="nav-menu">
         <ul id="nav-list">
+          <li class="nav-item-menu" v-if="isAdmin">
+            <a
+              href=""
+              class="admin"
+              @click.stop.prevent="$router.push({ name: 'Admin' })"
+              ><i class="fa-solid fa-lock"></i
+              ><span class="nav-item-span">Cadastrar Produtos</span></a
+            >
+          </li>
           <li class="nav-item-menu">
             <a
               href=""
@@ -120,6 +121,7 @@ export default {
     return {
       barraClosed: true,
       usuario: {},
+      isAdmin: false,
     };
   },
 
@@ -146,7 +148,7 @@ export default {
       const [usuario] = data;
 
       this.usuario = usuario;
-      console.log(this.usuario);
+      this.isAdmin = usuario.admin;
     },
   },
 

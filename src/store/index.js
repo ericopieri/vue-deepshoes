@@ -97,10 +97,10 @@ export default new Vuex.Store({
         };
       });
 
-      console.log(state.carrinho.id)
+      console.log(state.carrinho.id);
 
       await api.patch("api/pedidos/" + state.carrinho.id + "/", {
-        itens: itens
+        itens: itens,
       });
     },
 

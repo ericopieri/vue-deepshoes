@@ -27,6 +27,7 @@ const routes = [
       },
       {
         path: "/admin",
+        name: "Admin",
         component: () => import("../views/CadastroProdutos.vue"),
       },
       {
