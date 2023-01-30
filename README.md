@@ -1,24 +1,21 @@
-# projeto-integrador
+# Projeto Integrador!
 
-## Project setup
+## Download dos pacotes necessários...
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compilando e rodando o servidor...
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compilando e ajustando para produção...
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### Lints e correção de erros quanto à sintaxe...
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
