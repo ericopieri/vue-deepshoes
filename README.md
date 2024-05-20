@@ -1,21 +1,18 @@
-# Projeto Integrador!
+# DeepShoes Sneaker Store
 
-## Download dos pacotes necessários...
-```
-npm install
-```
+This repository contains a simple Vue.js project for a fictional sneaker store. It was created as part of an academic project during the Integrative Project course in the third year of my Technical Course.
 
-### Compilando e rodando o servidor...
-```
-npm run serve
-```
+## Getting Started
 
-### Compilando e ajustando para produção...
-```
-npm run build
-```
+To run the project locally, follow these steps:
 
-### Lints e correção de erros quanto à sintaxe...
-```
-npm run lint
-```
+1. Clone this repository.
+2. Navigate to the project directory.
+3. Install dependencies:
+   ```
+   npm install
+   ```
+4. Start the development server:
+   ```
+   npm run serve
+   ```
